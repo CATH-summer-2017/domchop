@@ -1,5 +1,7 @@
 ## This is where we keep a list of interesting domchops.
 ## Remember to keep the chain ID in pdbID 
+
+## Submitted cases
 pdbID	reason
 4txaA	manual assignment
 4w22K	unpacked insertion in dom2
@@ -8,8 +10,8 @@ pdbID	reason
 5af3B	Strong dom-dom interaction and multimerisation
 5akpB	helical linker, dom-dom interaction
 
-Commented cases
-4qvgC
+##Commented cases
+4qvgC		resolved
 4qslH	
 4r04A
 4ufqA
