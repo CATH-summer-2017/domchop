@@ -1,20 +1,34 @@
 ## This is where we keep a list of interesting domchops.
 ## Remember to keep the chain ID in pdbID 
-pdbID	reason
-4txaA	manual assignment
-4w22K	unpacked insertion in dom2
-4rcnB	incorrect cathedral rendering?
-4rm6A	Long repeated stacked beta sheets (non-globular). 
-5af3B	Strong dom-dom interaction and multimerisation
-5akpB	helical linker, dom-dom interaction
-4ye9A	strange case, most methods diagree	r
 
-##Commented cases
-4qvgC		r
-4qslH		
-4r04A
-4ufqA
-4rcnB	 rendering
-4ug4D
-4ui9X
-2mxvA	
+
+##Chopped cases
+pdbID	reason
+4txaA	w 	manual assignment
+4w22K	w 	unpacked insertion in dom2
+4rcnB	w 	incorrect cathedral rendering?
+4rm6A	w 	Long repeated stacked beta sheets (non-globular). 
+5af3B	w 	Strong dom-dom interaction and multimerisation
+5akpB	c 	helical linker, dom-dom interaction	rechopped,
+4ye9A	r 	strange case, most methods diagree	
+
+##Commented cases, To be chopped
+4qslH	w	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
+4r04A	w	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region.
+4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
+4rcnB	w 	rasmol rendering problem
+4ug4D	w 	Peripheral helixes
+2mxvA	w 	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
+
+4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
+4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
+
+
+
+#
+w:waiting for action
+r:resolved
+c:consulting Christine
+
+### Notes:
+Check the paper for hard cases.
