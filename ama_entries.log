@@ -7,11 +7,11 @@ pdbID	reason
 4rm6A	Long repeated stacked beta sheets (non-globular). 
 5af3B	Strong dom-dom interaction and multimerisation
 5akpB	helical linker, dom-dom interaction
-4ye9A  strange case, most methods diagree
+4ye9A	strange case, most methods diagree
 
 ##Commented cases
-4qvgC		resolved
-4qslH	
+4qvgC		r
+4qslH		
 4r04A
 4ufqA
 4rcnB	 rendering
