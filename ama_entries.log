@@ -23,6 +23,10 @@ pdbID	reason
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 5a01C w CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
+4zdyA w According to Cathedral the structure should be divided into 2 domains. Ecod suggests it's a single domain structure. I think Domain 1 should be removed as it is too unpacked (COAF).
+4ze0A w Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
+4zemB w CC results are really good. However, the second domain is IDS.
+4zgvA w 22-stranded transmembrane b-barrel that is difficult to chop
 
 #
 w:waiting for action
