@@ -22,8 +22,7 @@ pdbID	reason
 
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
-
-
+5a01C w CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
 
 #
 w:waiting for action
