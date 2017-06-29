@@ -1,12 +1,44 @@
-# DomChop
-DomChop is a semi-automated step in CATH workflow that automatically processes new PDB structures and classify them into the existing hierarchies.
+# 
+Make sure you are on nDOPE branch before you test anything
 
-This repository documents the activity of 2017 summer students in Orengo's group.
+```sh
+git fetch nDOPE
+git checkout nDOPE
+```
 
-See **ama_entries.log** for ambiguous/amazing entries.
-[Acornyms (CATH_trac, internal)](http://trac.cathdb.info/projects/cath/wiki/DomChop) 
 
-See **codes/** for ongoing python codes related to domchop.
+# Pre-requisite and configuration
+You should have **modeller** installed and configured as a pre-requisite. 
 
-#### CATH workflow
-![CATH pipeline flowchart](http://update.cathdb.info/images/flow_stage_diagram.jpg) 
+You should have modeller/bin on your $PATH variable. To set this temporarily, run 
+
+```sh
+export PATH="$PATH:/path-to-modeller/bin/"
+source modpy.sh
+```
+
+For example, if you installed Modeller to /home/linux/modeller, run
+
+```sh
+export PATH="$PATH:/home/linux/modeller/bin/"
+source modpy.sh
+```
+
+You can add these two commands into `~/.bashrc`, so that it is automatically set next time you start a new bash shell.
+
+Alternatively, you can simply issue a condensed one-liner.
+```sh
+source /home/linux/modeller/bin/modpy.sh 
+```
+
+# Tests
+
+Please run tests with 
+
+```bash
+chmod +x run_tests.sh # To make the script executable
+./run_tests.sh ## To run the tests
+```
+
+It should take ~10s to run all the tests.
+
