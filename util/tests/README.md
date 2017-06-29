@@ -1,4 +1,4 @@
-Example use:
+To run a single test:
 ```
 python toy_test.py
 ```
@@ -10,6 +10,8 @@ pip install nose
 and then pass the whole directory with
 
 ```
-nosetests .
+nosetests
 ```
+
+Or run the `run_test.sh` script in root directory.
 
