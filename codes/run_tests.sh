@@ -12,4 +12,4 @@ echo running $f
 python $f
 
 done
-echo 'All tests done'
+# echo 'All tests done'
