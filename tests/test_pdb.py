@@ -61,22 +61,21 @@ if __name__ == '__main__':
 	unittest.main();
 	
 
-	# # get_nDOPE("")
-	# mypath = "../pdbs/"
-	# from os import listdir
-	# from os.path import isfile, join
-	# onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-	# nDOPEs=[];
-	# for pdbfile in onlyfiles:
-	# 	nDOPEs.append(get_nDOPE(pdbfile));
+	mypath = "../pdbs/"
+	from os import listdir
+	from os.path import isfile, join
+	onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+	nDOPEs=[];
+	for pdbfile in onlyfiles:
+		nDOPEs.append(get_nDOPE(pdbfile));
 
-	# import csv
-	# with open("ref_DOPEs.csv", "w") as f:
-	# 	c = csv.writer(f)
-	# 	for row_vals in zip(onlyfiles, nDOPEs):
-	# 		# row = "\t".join(row_vals)+"\n"
-	# 		c.writerow(row_vals);
-	# 	# print(zip(onlyfiles, nDOPEs))
+	import csv
+	with open("ref_DOPEs.csv", "w") as f:
+		c = csv.writer(f)
+		for row_vals in zip(onlyfiles, nDOPEs):
+			# row = "\t".join(row_vals)+"\n"
+			c.writerow(row_vals);
+		# print(zip(onlyfiles, nDOPEs))
 
 
 
