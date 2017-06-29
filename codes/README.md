@@ -21,7 +21,7 @@ You can add these two commands into `~/.bashrc`, so that it is automatically set
 
 Please run tests with 
 
-```sh
+```bash
 chmod +x run_tests.sh # To make the script executable
 ./run_tests.sh ## To run the tests
 ```
