@@ -1,3 +1,12 @@
+# 
+Make sure you are on nDOPE branch before you test anything
+
+```sh
+git fetch nDOPE
+git checkout nDOPE
+```
+
+
 # Pre-requisite and configuration
 You should have modeller installed and configured as a pre-requisite. 
 
