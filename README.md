@@ -1,4 +1,4 @@
-#Domchop-util
+# Domchop-util
  This repository includes the ongoing efforts in production of useful codes to facilitate the manual curation of domain chopping. Check our [wiki page](https://github.com/CATH-summer-2017/domchop/wiki) if you never heard of **DomChop**.
 
 * Make sure you are on nDOPE branch before you test anything
