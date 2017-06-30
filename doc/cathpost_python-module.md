@@ -63,7 +63,7 @@ Imagine you got a circular peptide chain of a fixed length, say 12 amino-acid(aa
 
 There are 20\*20\*20 = 8000 possible permutations that could happen, and we need to specify the resultant residue from each of the 8000 permutations. First let's assume the rule is simple, every of them become an Ala (aa_id:1)
 
-Let's create a python script "``main.py``" with the following commands.
+Let's create a python script "``main.py``" with the following content.
 
 ```python
 import numpy as np
@@ -118,7 +118,7 @@ new = evolve( old, rule) ### Magic happens
 print(new)
 ```
 
-This one-liner will become handy if we'd like to see the result after 1000 rounds, it will just be
+This one-liner will become handy if we'd like to see the result after 1000 rounds, the code will just become
 
 ```python
 
@@ -138,7 +138,9 @@ print(new_seq)
 
 ```
 
-This code obviously is not functional yet. Running it throws "``NameError: name 'evolve' is not defined``", which makes sense, for we did not define "``evolve``" anywhere at all. Define a function in python is straight forward. Let's define this magic called "``evolve()``":
+This code obviously is not functional yet. Running it throws "``NameError: name 'evolve' is not defined``", which makes sense, for we did not define "``evolve``" anywhere at all. Define a function in python is straight forward. 
+
+</br>Let's define this magic called "``evolve()``":
 
 ```python
 import numpy as np
@@ -189,34 +191,35 @@ print(seq)
 ```
 As the module "``evolve``" is not defined yet (no magic yet), we'd expect "``ImportError: No module named evolve``". So, how on earth do we pack "``def``" into a module? A python module is essentially a "``.py``" script or a **directory** containing "``.py``" scripts.
 
-To create a "``evolve``" module, let's make a "``evolve.py``" under the **same** directory as "``main.py``" created earlier.
+To create a "``evolve``" module, let's make a "``evolve.py``" under the **same** directory as "``main.py``" created earlier:
 
 "``evolve.py``"
 ```python
 import numpy as np
 
 def evolve( old, rule):
-new = old[:]; ## Create a independent copy.
-l = len(old)
+	new = old[:]; ## Create a independent copy.
+	l = len(old)
 
-for ( i, res) in enumerate(old):
-	i_lef = i - 1; ### numpy handle -1th entry swiftly as expected
-	i_rig = ( i + 1 ) % l ## We do not want to access 13th entry from a 12-entry array.
+	for ( i, res) in enumerate(old):
+		i_lef = i - 1; ### numpy handle -1th entry swiftly as expected
+		i_rig = ( i + 1 ) % l ## We do not want to access 13th entry from a 12-entry array.
 
-# res = old[ i ]; ### from definition
-res_lef = old[ i_lef ];
-res_rig = old[ i_rig ];
+		# res = old[ i ]; ### from definition
+		res_lef = old[ i_lef ];
+		res_rig = old[ i_rig ];
 
-### Look up the rule array
-new [i] = rule [ res_lef, res, res_rig ];
-return(new) ### return the output of the function to global namespace
+		### Look up the rule array
+		new [i] = rule [ res_lef, res, res_rig ];
+	return(new) ### return the output of the function to global namespace
 ```
 
 Remember to always save your changes in text editor!
 
 Let's run "``main.py``" again. Unfortunately, it still throws an error. "``TypeError: 'module' object is not callable``" If you look at the line reported, you should find the "``evolve( seq, rule)``" statement in "``main.py``". Generally, to "call" "``foo``", just means running "``foo()``".
 
-If you remember **Question 1** from earlier with "``random.random()``", you should come up with "``evolve.evolve( seq, rule)``" as a solution. To make it clearer, let's change the name of "``evolve.py``" to "``lib.py``". Correspondingly "``main.py``" should change to:
+If you remember **Question 1** from earlier with "``random.random()``", you should come up with "``evolve.evolve( seq, rule)``" as a solution. To make it clearer, let's change the name of "``evolve.py``" to "``lib.py``". 
+<br/>Correspondingly "``main.py``" should change to:
 
 ```
 import numpy as np
