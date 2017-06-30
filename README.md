@@ -1,7 +1,12 @@
 # Domchop-util
  This repository includes the ongoing efforts in production of useful codes to facilitate the manual curation of domain chopping. Check our [wiki page](https://github.com/CATH-summer-2017/domchop/wiki) if you never heard of **DomChop**.
+ 
+ If you are a Domchop curator. Please find the `ama_entries.log` under `doc/`. Please also document interesting structures into `pdbs/` .
 
-* Make sure you are on nDOPE branch before you test anything
+
+
+* Make sure you are on nDOPE branch before you test anything. **(Obsolete,`nDOPE` already merged into `master`)**
+
 
 ```sh
 git fetch nDOPE
