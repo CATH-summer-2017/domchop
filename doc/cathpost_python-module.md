@@ -1,5 +1,5 @@
-
-#Python modules are fun, once you understand it
+[markdown]
+[#Python modules are fun, once you understand it]
 
 #### Brief:
 Having the privilege of joining Orengo's group as a summer student, I feel urged to improve my coding as well as documentation skills. Thus I intend to log my coding and thinking in a series of blog posts, on a weekly basis. 
@@ -277,6 +277,7 @@ Too keep things simple, lets assign some names. We don't really care what the ro
 
 ```
 
+
 Conventionally, we store all easily importable modules into a directory "``lib/``" instead of a script. So let's do "``mkdir lib``" and "``mv lib.py lib/libA.py``". 
 
 ```
@@ -320,3 +321,5 @@ Great! Above concludes my initial effort in organising my Python code, and hopef
 Feng Geng<br />
 Summer Student<br />
 ISMB,UCL
+
+[/markdown]
