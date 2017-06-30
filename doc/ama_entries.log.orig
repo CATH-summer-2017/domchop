@@ -1,0 +1,26 @@
+## This is where we keep a list of interesting domchops.
+## Remember to keep the chain ID in pdbID 
+
+## Submitted cases
+pdbID	reason
+4txaA	manual assignment
+4w22K	unpacked insertion in dom2
+4rcnB	incorrect cathedral rendering?
+4rm6A	Long repeated stacked beta sheets (non-globular). 
+5af3B	Strong dom-dom interaction and multimerisation
+5akpB	helical linker, dom-dom interaction
+4ye9A  strange case, most methods diagree
+
+
+
+##Commented cases
+4qvgC		resolved
+4qslH	
+4r04A
+4ufqA
+4rcnB	 rendering
+<<<<<<< HEAD
+=======
+4ug4D
+4ui9X
+>>>>>>> 9e442867eb240a2f21f457803a932eee6576b579
