@@ -24,7 +24,7 @@ export PATH="$PATH:/path-to-modeller/bin/"
 source modpy.sh
 ```
 
-For example, if you installed Modeller to /home/linux/modeller, run
+For example, if you installed Modeller to "/home/linux/modeller", then run:
 
 ```sh
 export PATH="$PATH:/home/linux/modeller/bin/"
@@ -39,6 +39,12 @@ source /home/linux/modeller/bin/modpy.sh
 ```
 
 # Tests
+
+Please test the Modeller installation with:
+```sh
+chmod +x tests/verify_modeller.sh
+tests/verify_modeller.sh
+```
 
 Please run tests with 
 

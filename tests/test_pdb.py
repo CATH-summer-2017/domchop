@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Example for 'atom' objects
 
 
@@ -21,15 +23,28 @@ import argparse
 parser = argparse.ArgumentParser(description='Short sample app')
 parser.add_argument('-r','--makeref', action="store_true", default=False, dest='newref',
 					help="Calculate reference nDOPE for structures in ../pdbs/ using cuurent algorithm and store them to ''ref_nDOPEs.csv'' ")
-# parser.add_argument('-b', action="store", dest="b",help='')
+parser.add_argument('-i','--input', action="store", default=None, dest="input_directory",
+					help='Input directory containing PDB to test')
 # parser.add_argument('-c', action="store", dest="c", type=int)
 args =  parser.parse_args()
 
-import sys
-sys.path.append('..')
+import sys,os,site
+reload(site)
+sys.path.append(os.path.abspath(
+								os.path.join(
+									os.path.realpath(__file__),
+									 os.pardir,
+									 os.pardir)
+								)
+				)
 
+for x in sys.path:
+	print(x)
+# cwd = os.getcwd();
 
 import unittest
+from domutil.util import get_nDOPE
+
 
 class testcase(unittest.TestCase):
 	def test(self):
@@ -47,11 +62,14 @@ class testcase(unittest.TestCase):
 			pass
 
 	def test_dope(self):
-		from util import get_nDOPE
 		from modeller import log 
 		log.none()  ### comment this line to recover verbosity to debug
 		import csv
-		with open("ref_DOPEs.csv", "r") as f:
+		fname = "ref_DOPEs.csv";
+		# if not os.path.isfile(fname): ### Create log file if not existed
+		# 	open(fname, "w").close();
+
+		with open(fname, "r") as f:
 			c = csv.reader(f);
 			nDOPE_lst = list(c);
 			i = 0;
@@ -65,32 +83,61 @@ class testcase(unittest.TestCase):
 				i = i + 1
 				print("%d of %d structure-nDOPE pairs passed tests" % ( i, imax))
 
+			if i == 0:
+				self.fail("No test set availabe")
 			print("All pdbs yielded expected nDOPE z-scores")
 
 
 if __name__ == '__main__':
 	
-	if args.newref:
+	if args.newref or args.input_directory:
 		from modeller import *
 		from modeller.scripts import complete_pdb
-		from lib.util import *
+		# from domutil.util import *
+		env = environ();
 
-		mypath = "../pdbs/"
+		if not args.input_directory:
+			mypath = "../pdbs/"
+		else:
+			# mypath = input_directory;#
+			mypath = os.path.abspath(args.input_directory)
+
+		# print(mypath)
 		from os import listdir
 		from os.path import isfile, join
-		onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-		nDOPEs=[];
 
-		for pdbfile in onlyfiles:
-			print("\n\n//Testing structure from %s" % pdbfile)
-			nDOPEs.append(get_nDOPE(pdbfile));
+		if os.path.isdir(mypath):
+			onlyfiles = [join(mypath,f) for f in listdir(mypath) if isfile(join(mypath, f))]
+		else:
+			onlyfiles = [mypath]
+
+		onlyfiles = sorted(onlyfiles)
+		nDOPEs = [];
+		tested_files = [];
+
+
+		# print(onlyfiles)
+
+
 
 		import csv
 		with open("ref_DOPEs.csv", "w") as f:
 			c = csv.writer(f)
-			for row_vals in zip(onlyfiles, nDOPEs):
-				# row = "\t".join(row_vals)+"\n"
-				c.writerow(row_vals);
+			for pdbfile in onlyfiles:
+				if pdbfile.split(".")[-1] in ["bak"]:
+					# onlyfiles.pop(pdbfile);
+					continue
+				print("\n\n//Testing structure from %s" % pdbfile)
+				nDOPE = get_nDOPE( join(pdbfile), env=None)
+				pdbname = os.path.basename(pdbfile);
+				nDOPEs.append( nDOPE );
+				tested_files.append( pdbname );
+				c.writerow( [pdbname, nDOPE] )
+				f.flush()
+			
+			# for row_vals in zip(tested_files, nDOPEs):
+			# 	# row = "\t".join(row_vals)+"\n"
+			# 	c.writerow(row_vals);
 
 	else:
 		unittest.main();
