@@ -26,7 +26,7 @@ parser.add_argument('-r','--makeref', action="store_true", default=False, dest='
 args =  parser.parse_args()
 
 import sys
-sys.path.append('../lib')
+sys.path.append('..')
 
 
 import unittest
