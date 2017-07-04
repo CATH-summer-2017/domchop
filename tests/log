@@ -1,6 +1,26 @@
-
-
-//Testing structure from 4ufqA
+/home/shouldsee/Documents/repos/cathdb/domchop/tests
+/home/shouldsee/Documents/repos/modeller/lib/x86_64-intel8
+/home/shouldsee/Documents/repos/modeller/modlib
+/usr/lib/python2.7
+/usr/lib/python2.7/plat-x86_64-linux-gnu
+/usr/lib/python2.7/lib-tk
+/usr/lib/python2.7/lib-old
+/usr/lib/python2.7/lib-dynload
+/home/shouldsee/.local/lib/python2.7/site-packages
+/home/shouldsee/.local/lib/python2.7/site-packages/smop-0.32_7_gcce8558-py2.7.egg
+/home/shouldsee/.local/lib/python2.7/site-packages/networkx-1.11-py2.7.egg
+/home/shouldsee/.local/lib/python2.7/site-packages/ply-3.10-py2.7.egg
+/home/shouldsee/.local/lib/python2.7/site-packages/simplesbml-1.1-py2.7.egg
+/home/shouldsee/Documents/repos/gym
+/home/shouldsee/.local/lib/python2.7/site-packages/Keras-2.0.5-py2.7.egg
+/usr/local/lib/python2.7/dist-packages
+/usr/lib/python2.7/dist-packages
+/usr/lib/python2.7/dist-packages/PILcompat
+/usr/lib/python2.7/dist-packages/libsbml
+/usr/lib/python2.7/dist-packages/gtk-2.0
+/usr/lib/python2.7/dist-packages/ubuntu-sso-client
+/usr/lib/python2.7/dist-packages/wx-3.0-gtk2
+/home/shouldsee/Documents/repos/cathdb/domchop
 
                          MODELLER 9.18, 2017/02/17, r11002
 
@@ -26,44 +46,11 @@
 Kind, OS, HostName, Kernel, Processor: 4, Linux shouldsee-asus 4.4.0-81-generic x86_64
 Date and time of compilation         : 2017/02/17 14:29:39
 MODELLER executable type             : x86_64-intel8
-Job starting time (YY/MM/DD HH:MM:SS): 2017/06/29 17:25:30
-
-read_to_681_> topology.submodel read from topology file:        3
->> Model assessment by DOPE potential
-iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
-preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
-preppdf_454W> Restraints file was probably not read; use restraints.append().
-
-
->> ENERGY; Differences between the model's features and restraints:
-Number of all residues in MODEL                   :      211
-Number of all, selected real atoms                :     1488    1488
-Number of all, selected pseudo atoms              :        0       0
-Number of all static, selected restraints         :        0       0
-COVALENT_CYS                                      :        F
-NONBONDED_SEL_ATOMS                               :        1
-Number of non-bonded pairs (excluding 1-2,1-3,1-4):   124947
-Dynamic pairs routine                             : 1, NATM x NATM double loop
-Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
-LENNARD_JONES_SWITCH                              :    6.500   7.500
-COULOMB_JONES_SWITCH                              :    6.500   7.500
-RESIDUE_SPAN_RANGE                                :        1    9999
-NLOGN_USE                                         :       15
-CONTACT_SHELL                                     :   15.000
-DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
-SPHERE_STDV                                       :    0.050
-RADII_FACTOR                                      :    0.820
-Current energy                                    :      -10730.4756
+Job starting time (YY/MM/DD HH:MM:SS): 2017/07/04 14:00:38
 
 
 
-
-<< end of ENERGY.
-DOPE score               : -10730.475586
->> Normalized DOPE z score: 2.015
-
-
-//Testing structure from 2odlA_chop_cath
+//Testing structure from ../pdbs/2odlA_chop_cath
 read_to_681_> topology.submodel read from topology file:        3
 >> Model assessment by DOPE potential
 iatmcls_286W> MODEL atom not classified:  ARG:OXT  ARG
@@ -99,7 +86,7 @@ DOPE score               : -92256.437500
 >> Normalized DOPE z score: -2.020
 
 
-//Testing structure from 2odlA_sup
+//Testing structure from ../pdbs/2odlA_sup
 read_to_681_> topology.submodel read from topology file:        3
 >> Model assessment by DOPE potential
 iatmcls_286W> MODEL atom not classified:  ARG:OXT  ARG
@@ -138,7 +125,87 @@ DOPE score               : -11318.466797
 >> Normalized DOPE z score: 6.043
 
 
-//Testing structure from 4ufq.pdb1
+//Testing structure from ../pdbs/4ufqA
+read_to_681_> topology.submodel read from topology file:        3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :      211
+Number of all, selected real atoms                :     1488    1488
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):   124947
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :      -10730.4756
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -10730.475586
+>> Normalized DOPE z score: 2.015
+
+
+//Testing structure from ../pdbs/4ufq_bio.catpdb
+read_to_681_> topology.submodel read from topology file:        3
+relabel_387W> Model has multiple chains, and they do not all have a unique
+              chain ID. Suggest you relabel them as A, B, C, etc.
+relabel_469W> At least one residue number in the model is duplicated.
+              (First duplication is residue "    7", chain " B".)
+              Suggest you renumber the residues and/or chains to
+              avoid selecting the wrong residues (e.g. with model_segment).
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :      633
+Number of all, selected real atoms                :     4473    4473
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):  1003121
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :      -69062.0078
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -69062.007812
+>> Normalized DOPE z score: -1.326
+
+
+//Testing structure from ../pdbs/4ufq_bio.pdb
 read_to_681_> topology.submodel read from topology file:        3
 >> Model assessment by DOPE potential
 iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
@@ -174,7 +241,43 @@ DOPE score               : -10849.120117
 >> Normalized DOPE z score: 1.994
 
 
-//Testing structure from 4xz8A_chop
+//Testing structure from ../pdbs/4ui9X
+read_to_681_> topology.submodel read from topology file:        3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  PRO:OXT  PRO
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :      484
+Number of all, selected real atoms                :     3802    3802
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):   690367
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :      -56193.9609
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -56193.960938
+>> Normalized DOPE z score: -0.551
+
+
+//Testing structure from ../pdbs/4xz8A_chop
 read_to_681_> topology.submodel read from topology file:        3
 >> Model assessment by DOPE potential
 iatmcls_286W> MODEL atom not classified:  PRO:OXT  PRO
@@ -208,3 +311,186 @@ Current energy                                    :      -59435.7969
 << end of ENERGY.
 DOPE score               : -59435.796875
 >> Normalized DOPE z score: -1.675
+
+
+//Testing structure from ../pdbs/4yv4
+read_to_681_> topology.submodel read from topology file:        3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  PHE:OXT  PHE
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+iatmcls_286W> MODEL atom not classified:  GLN:OXT  GLN
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :      427
+Number of all, selected real atoms                :     3567    3567
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):   573977
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :      -52566.8008
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -52566.800781
+>> Normalized DOPE z score: -2.507
+
+
+//Testing structure from ../pdbs/4yv4G
+read_to_681_> topology.submodel read from topology file:        3
+
+getf_______W> RTF restraint not found in the atoms list:
+              residue type, indices:    13     1
+              atom names           : N     -C    CA    CD
+              atom indices         :     1     0     2     3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  THR:OXT  THR
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :       56
+Number of all, selected real atoms                :      468     468
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):    31312
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :       -5034.3955
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -5034.395508
+>> Normalized DOPE z score: -2.254
+
+
+//Testing structure from ../pdbs/5kk3
+read_to_681_> topology.submodel read from topology file:        3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :      576
+Number of all, selected real atoms                :     4230    4230
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):   981612
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :      -79997.7344
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -79997.734375
+>> Normalized DOPE z score: -1.506
+
+
+//Testing structure from ../pdbs/5kk3_AJ
+read_to_681_> topology.submodel read from topology file:        3
+>> Model assessment by DOPE potential
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+iatmcls_286W> MODEL atom not classified:  ALA:OXT  ALA
+preppdf_453W> No fixed restraints selected; there may be some dynamic ones.
+preppdf_454W> Restraints file was probably not read; use restraints.append().
+
+
+>> ENERGY; Differences between the model's features and restraints:
+Number of all residues in MODEL                   :       64
+Number of all, selected real atoms                :      470     470
+Number of all, selected pseudo atoms              :        0       0
+Number of all static, selected restraints         :        0       0
+COVALENT_CYS                                      :        F
+NONBONDED_SEL_ATOMS                               :        1
+Number of non-bonded pairs (excluding 1-2,1-3,1-4):    28012
+Dynamic pairs routine                             : 1, NATM x NATM double loop
+Atomic shift for contacts update (UPDATE_DYNAMIC) :    0.390
+LENNARD_JONES_SWITCH                              :    6.500   7.500
+COULOMB_JONES_SWITCH                              :    6.500   7.500
+RESIDUE_SPAN_RANGE                                :        1    9999
+NLOGN_USE                                         :       15
+CONTACT_SHELL                                     :   15.000
+DYNAMIC_PAIRS,_SPHERE,_COULOMB,_LENNARD,_MODELLER :        T       F       F       F       T
+SPHERE_STDV                                       :    0.050
+RADII_FACTOR                                      :    0.820
+Current energy                                    :       -2771.0100
+
+
+
+
+<< end of ENERGY.
+DOPE score               : -2771.010010
+>> Normalized DOPE z score: 3.271
+
+
+//Testing structure from ../pdbs/ref_DOPEs.csv
+read_to_681_> topology.submodel read from topology file:        3
+rdpdb___303E> No atoms were read from the specified input PDB file, since the
+              starting residue number and/or chain id in MODEL_SEGMENT (or
+              the alignment file header) was not found;
+              requested starting position: residue number " FIRST", chain " @";
+              atom file name:  ../pdbs/ref_DOPEs.csv

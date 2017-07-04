@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
 		# print(onlyfiles)
 
-		wait = 1;
+		wait = 0;
 		waitname = "3p9dG03";
 		reset = 0;
 
