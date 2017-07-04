@@ -15,3 +15,7 @@ deb_dist
 develop-eggs
 .installed.cfg
 
+
+
+# Notebook Checkpoints
+.ipynb_checkpoints/
