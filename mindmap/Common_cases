@@ -1,3 +1,5 @@
 
-
-Category    PDB ID   Method used
+Category - PDB ID - Method used
+Ambiguous domain boundaries - 4ncdA - reduce the fragment length at the end of each domain
+Secondary structure split between domains - ??? - change the boundaries of the domains so that the secondary structure belongs to one domain
+Secondary or primary sequence that connects two domains- ??? - remove the link as a fragment
