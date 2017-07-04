@@ -119,7 +119,7 @@ if __name__ == '__main__':
 		# print(onlyfiles)
 
 		wait = 0;
-		waitname = "3p9dG03";
+		waitname = "4j27A02";
 		reset = 0;
 
 		if reset:
@@ -138,7 +138,7 @@ if __name__ == '__main__':
 						wait = 0;
 					continue
 				print("\n\n//Testing structure from %s" % pdbfile)
-				nDOPE = get_nDOPE( join(pdbfile), env=None)
+				nDOPE = get_nDOPE( join(pdbfile), env = env)
 				nDOPEs.append( nDOPE );
 				tested_files.append( pdbname );
 				c.writerow( [pdbname, nDOPE] )

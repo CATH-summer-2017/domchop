@@ -46,7 +46,7 @@
 Kind, OS, HostName, Kernel, Processor: 4, Linux shouldsee-asus 4.4.0-81-generic x86_64
 Date and time of compilation         : 2017/02/17 14:29:39
 MODELLER executable type             : x86_64-intel8
-Job starting time (YY/MM/DD HH:MM:SS): 2017/07/04 14:00:38
+Job starting time (YY/MM/DD HH:MM:SS): 2017/07/04 14:46:15
 
 
 
@@ -485,12 +485,3 @@ Current energy                                    :       -2771.0100
 << end of ENERGY.
 DOPE score               : -2771.010010
 >> Normalized DOPE z score: 3.271
-
-
-//Testing structure from ../pdbs/ref_DOPEs.csv
-read_to_681_> topology.submodel read from topology file:        3
-rdpdb___303E> No atoms were read from the specified input PDB file, since the
-              starting residue number and/or chain id in MODEL_SEGMENT (or
-              the alignment file header) was not found;
-              requested starting position: residue number " FIRST", chain " @";
-              atom file name:  ../pdbs/ref_DOPEs.csv
