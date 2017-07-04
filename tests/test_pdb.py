@@ -118,18 +118,27 @@ if __name__ == '__main__':
 
 		# print(onlyfiles)
 
+		wait = 1;
+		waitname = "3p9dG03";
+		reset = 0;
 
+		if reset:
+			open("ref_DOPEs.csv","w").close()
 
 		import csv
-		with open("ref_DOPEs.csv", "w") as f:
+
+		with open("ref_DOPEs.csv", "a") as f:
 			c = csv.writer(f)
+
 			for pdbfile in onlyfiles:
-				if pdbfile.split(".")[-1] in ["bak"]:
+				pdbname = os.path.basename(pdbfile);
+				if pdbfile.split(".")[-1] in ["bak"] or wait:
 					# onlyfiles.pop(pdbfile);
+					if pdbname == waitname:
+						wait = 0;
 					continue
 				print("\n\n//Testing structure from %s" % pdbfile)
 				nDOPE = get_nDOPE( join(pdbfile), env=None)
-				pdbname = os.path.basename(pdbfile);
 				nDOPEs.append( nDOPE );
 				tested_files.append( pdbname );
 				c.writerow( [pdbname, nDOPE] )

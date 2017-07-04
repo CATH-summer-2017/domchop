@@ -20,18 +20,24 @@ pdbID	reason
 
 ##Commented cases, To be chopped
 4qslH	w	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
-4r04A	w	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region.
+
+4r04A	w	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
+
+
 4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
 4rcnB	w 	rasmol rendering problem
-4ug4D	w 	Peripheral helixes
 2mxvA	w 	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
+
 
 5a01C	w 	CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
 4zdyA 	w 	According to Cathedral the structure should be divided into 2 domains. Ecod suggests it's a single domain structure. I think Domain 1 should be removed as it is too unpacked (COAF).
 4zemB 	w 	CC results are really good. However, the second domain is IDS.
-4zgvA 	w 	22-stranded transmembrane b-barrel that is difficult to chop
+4zgvA 	r 	22-stranded transmembrane b-barrel that is difficult to chop
+
+##Feng
 4ztcA	w 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
-5a22A	w 	Cryo_EM, no sensible auto-result
+5a22A	w 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
+4ug4D	w 	Peripheral helixes *Check with nDOPE
 
 
 
