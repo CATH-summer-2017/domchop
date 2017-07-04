@@ -1,5 +1,5 @@
-domainID,class,arch,topo,homsf,s35,s60,s95,s100,s100_seqcnt,domain_length,resolution,nDOPE
-1gjjA00,1,10,720,40,3,1,1,1,1,93,999,6.261382097540852
+domainID,class,arch,topo,homsf,s35,s60,s95,s100,s100_seqcnt,domain_length,resolution,nDOPE,comment
+1gjjA00,1,10,720,40,3,1,1,1,1,93,999,6.261382097540852,superposition PDB
 2wscN00,4,10,1190,10,1,1,1,1,1,85,3.3,4.743893591872755
 3fwlA01,1,20,5,100,8,1,1,1,1,31,3.09,4.571775309228364
 3o58Y02,3,100,10,10,3,1,1,1,1,92,1000,4.035976287566569
