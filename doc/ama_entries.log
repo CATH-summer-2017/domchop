@@ -29,6 +29,7 @@ pdbID	reason
 4rcnB	w 	rasmol rendering problem
 2mxvA	w 	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
 
+##Miruna 
 5a01C	r	CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
 4zemB 	r 	CC results are really good. However, the second domain is IDS.
 4zgvA 	r 	22-stranded transmembrane b-barrel that is difficult to chop
