@@ -48,6 +48,7 @@ pdbID	reason
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
 4zl4B w   Algorithms are panicking, not agreeing with prodata either
 5bq9B w   missing a big chunk of structure, however the domains are easy to see
+5byhM w   really unpacked protein, part of a big multichain complex, strange stuff
 #
 w:waiting for action
 r:resolved
