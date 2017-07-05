@@ -14,7 +14,8 @@ pdbID	reason
 
 
 5akpB	c 	helical linker, dom-dom interaction	rechopped,
-4ye9A	r 	strange case, most methods diagree	
+4ye9A	r 	strange case, most methods diagree
+5bmtB r   CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
 
 
 
