@@ -46,7 +46,7 @@ pdbID	reason
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
 4zl4B w   Algorithms are panicking, not agreeing with prodata either
-
+5bq9B w   missing a big chunk of structure, however the domains are easy to see
 #
 w:waiting for action
 r:resolved
