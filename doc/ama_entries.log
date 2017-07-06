@@ -14,7 +14,8 @@ pdbID	reason
 
 
 5akpB	c 	helical linker, dom-dom interaction	rechopped,
-4ye9A	r 	strange case, most methods diagree	
+4ye9A	r 	strange case, most methods diagree
+5bmtB r   CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
 
 
 
@@ -28,6 +29,7 @@ pdbID	reason
 4rcnB	w 	rasmol rendering problem
 2mxvA	w 	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
 
+##Miruna 
 5a01C	r	CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
 4zemB 	r 	CC results are really good. However, the second domain is IDS.
 4zgvA 	r 	22-stranded transmembrane b-barrel that is difficult to chop
@@ -37,6 +39,7 @@ pdbID	reason
 4ztcA	w 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
 5a22A	w 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
 4ug4D	w 	Peripheral helixes *Check with nDOPE
+4zzhA w   not sure about proposed domain 1, might be too small and unpacked
 
 
 
@@ -44,7 +47,8 @@ pdbID	reason
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
 4zl4B w   Algorithms are panicking, not agreeing with prodata either
-
+5bq9B w   missing a big chunk of structure, however the domains are easy to see
+5byhM w   really unpacked protein, part of a big multichain complex, strange stuff
 #
 w:waiting for action
 r:resolved
