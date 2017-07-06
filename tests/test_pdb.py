@@ -25,6 +25,8 @@ parser.add_argument('-r','--makeref', action="store_true", default=False, dest='
 					help="Calculate reference nDOPE for structures in ../pdbs/ using cuurent algorithm and store them to ''ref_nDOPEs.csv'' ")
 parser.add_argument('-i','--input', action="store", default=None, dest="input_directory",
 					help='Input directory containing PDB to test')
+parser.add_argument('-j','--thread', action="store", default=None, dest="num_threads",
+					type = int, help='Number of thread to use')
 # parser.add_argument('-c', action="store", dest="c", type=int)
 args =  parser.parse_args()
 
@@ -128,56 +130,61 @@ if __name__ == '__main__':
 			open(fname,"w").close()
 
 		##### Parallel routine
-		import multiprocessing as mp
-		import logging
-		# mpl = mp.log_to_stderr()
-		# mpl.setLevel(logging.INFO)
-		manager = mp.Manager()
-		q = manager.Queue();   
-		pool = mp.Pool( mp.cpu_count() - 1);
+		if args.num_threads is not None :
+			import multiprocessing as mp
+			import logging
+			# mpl = mp.log_to_stderr()
+			# mpl.setLevel(logging.INFO)
+			manager = mp.Manager()
+			q = manager.Queue();   
+			if args.num_threads is 0:
+				pool = mp.Pool( mp.cpu_count() - 1);
+			else: 
+				pool = mp.Pool( args.num_threads);
 
-		### CSV listener I/O to "fname"
-		watcher = pool.apply_async( csv_listener, (q,));
-		
-		#fire off workers
-		jobs = [];
-		# print(onlyfiles)
-		for pdbfile in onlyfiles:
-			job = pool.apply_async( worker, (pdbfile,q,shared_lst) )
-			jobs.append( job )
-
-		# collect results from the workers through the pool result queue
-		for job in jobs:
-			job.get()
-
-		#now we are done, kill the listener
-		q.put('kill')
-		pool.close()
-
-
-		#### Single-thread routine	
-		# import csv
-		# nDOPEs = [];
-		# tested_files = [];
-		# with open(fname, "a") as f:
-		# 	c = csv.writer(f)
-		# 	for pdbfile in onlyfiles:
-		# 		pdbname = os.path.basename(pdbfile);
-		# 		if pdbfile.split(".")[-1] in ["bak"] or wait:
-		# 			# onlyfiles.pop(pdbfile);
-		# 			if pdbname == waitname:
-		# 				wait = 0;
-		# 			continue
-		# 		print("\n\n//Testing structure from %s" % pdbfile)
-		# 		nDOPE = get_nDOPE( join(pdbfile), env = env)
-		# 		nDOPEs.append( nDOPE );
-		# 		tested_files.append( pdbname );
-		# 		c.writerow( [pdbname, nDOPE] )
-		# 		f.flush()
+			### CSV listener I/O to "fname"
+			watcher = pool.apply_async( csv_listener, (q,));
 			
-		# 	for row_vals in zip(tested_files, nDOPEs):
-		# 		# row = "\t".join(row_vals)+"\n"
-		# 		c.writerow(row_vals);
+			#fire off workers
+			jobs = [];
+			# print(onlyfiles)
+			for pdbfile in onlyfiles:
+				job = pool.apply_async( worker, (pdbfile,q,shared_lst) )
+				jobs.append( job )
+
+			# collect results from the workers through the pool result queue
+			for job in jobs:
+				job.get()
+
+			#now we are done, kill the listener
+			q.put('kill')
+			pool.close()
+		else:
+
+
+			#### Single-thread routine	
+			import csv
+			nDOPEs = [];
+			tested_files = [];
+			with open(fname, "a") as f:
+				c = csv.writer(f)
+				for pdbfile in onlyfiles:
+					pdbname = os.path.basename(pdbfile);
+					if pdbfile.split(".")[-1] in ["bak"] or wait:
+						# onlyfiles.pop(pdbfile);
+						if pdbname == waitname:
+							wait = 0;
+						continue
+					print("\n\n//Testing structure from %s" % pdbfile)
+					nDOPE = get_nDOPE( join(pdbfile), env = env)
+					nDOPEs.append( nDOPE );
+					tested_files.append( pdbname );
+					c.writerow( [pdbname, nDOPE] )
+					f.flush()
+				
+				for row_vals in zip(tested_files, nDOPEs):
+					# row = "\t".join(row_vals)+"\n"
+					c.writerow(row_vals);
 
 	else:
 		unittest.main();
