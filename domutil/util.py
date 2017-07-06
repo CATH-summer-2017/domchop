@@ -24,24 +24,24 @@ def get_nDOPE( pdbfile, env = None):
 	
 import csv
 
-def csv_listener(q):
-    '''listens for messages on the q, writes to file. '''
-    ## Read "fname" from global. "fname" file must exists prior to call.
+def csv_listener( q, fname):
+	'''listens for messages on the q, writes to file. '''
+	## Read "fname" from global. "fname" file must exists prior to call.
 
-    f = open(fname, 'ra') 
-    c = csv.writer(f)
-    while 1:
-        m = q.get()
-        if m == 'kill':
-            f.write('killed \n')
-            break
-        elif m == 'clear':
-        	f.truncate();	
-        else:## Asumme a csv row
-        	row = m
-        	c.writerow( row )
-        f.flush()
-    f.close()
+	f = open(fname, 'a') 
+	c = csv.writer(f)
+	while 1:
+		m = q.get()
+		if m == 'kill':
+			# f.write('killed \n')
+			break
+		elif m == 'clear':
+			f.truncate();	
+		else:## Asumme a csv row
+			row = m
+			c.writerow( row )
+		f.flush()
+	f.close()
 
 
 

@@ -24,9 +24,13 @@ parser = argparse.ArgumentParser(description='Short sample app')
 parser.add_argument('-r','--makeref', action="store_true", default=False, dest='newref',
 					help="Calculate reference nDOPE for structures in ../pdbs/ using cuurent algorithm and store them to ''ref_nDOPEs.csv'' ")
 parser.add_argument('-i','--input', action="store", default=None, dest="input_directory",
-					help='Input directory containing PDB to test')
+					help='Input: A pdb file or a directory containing PDB to test')
 parser.add_argument('-j','--thread', action="store", default=None, dest="num_threads",
 					type = int, help='Number of thread to use')
+parser.add_argument('-o','--output', action="store", default=None, dest="output_file",
+					help='Name of output csv file')
+parser.add_argument('-a','--append', action="store_true", default=False, dest="append",
+					help='Append to existing output file')
 # parser.add_argument('-c', action="store", dest="c", type=int)
 args =  parser.parse_args()
 
@@ -122,11 +126,12 @@ if __name__ == '__main__':
 		wait = 0;
 		waitname = "4j27A02";
 		reset = 1;
-		fname = "ref_DOPEs.csv"
+		fname = args.output_file or "ref_DOPEs.csv"
+
 
 		shared_lst = (wait,waitname,reset,fname,env);
 
-		if reset:
+		if not args.append:
 			open(fname,"w").close()
 
 		##### Parallel routine
@@ -143,7 +148,7 @@ if __name__ == '__main__':
 				pool = mp.Pool( args.num_threads);
 
 			### CSV listener I/O to "fname"
-			watcher = pool.apply_async( csv_listener, (q,));
+			watcher = pool.apply_async( csv_listener, (q,fname));
 			
 			#fire off workers
 			jobs = [];
