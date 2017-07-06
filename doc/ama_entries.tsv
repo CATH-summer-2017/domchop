@@ -1,8 +1,6 @@
 ## This is where we keep a list of interesting domchops.
 ## Remember to keep the chain ID in pdbID 
-
 ### Higher entries are older, lower entries are newer. (only true for "w" entries)
-
 
 ##Chopped cases
 pdbID	reason
@@ -13,9 +11,9 @@ pdbID	reason
 5af3B	w 	Strong dom-dom interaction and multimerisation
 
 
-5akpB	c 	helical linker, dom-dom interaction	rechopped,
-4ye9A	r 	strange case, most methods diagree
-5bmtB r   CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
+5akpB	c	helical linker, dom-dom interaction	rechopped,
+4ye9A	r	strange case, most methods diagree
+5bmtB	r	CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
 
 
 
@@ -26,37 +24,37 @@ pdbID	reason
 
 
 4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
-4rcnB	w 	rasmol rendering problem
-2mxvA	w 	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
+4rcnB	w	rasmol rendering problem
+2mxvA	w	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
 
 ##Miruna 
 5a01C	r	CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
 4zemB 	r 	CC results are really good. However, the second domain is IDS.
 4zgvA 	r 	22-stranded transmembrane b-barrel that is difficult to chop
 4zdyA 	w 	According to Cathedral the structure should be divided into 2 domains. Ecod suggests it's a single domain structure. I think Domain 1 should be removed as it is too unpacked (COAF).
-5bu3A   w   Not sure about the helix that seems to be a connecting region between the barrels in the structure
-5a60A   w   Incomplete structure- many gaps -  not sure if I should chop it
-5by3A   w   Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
+5bu3A	w	Not sure about the helix that seems to be a connecting region between the barrels in the structure
+5a60A	w	Incomplete structure- many gaps -  not sure if I should chop it
+5by3A	w	Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
 
 
 ##Feng
 4ztcA	w 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
 5a22A	w 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
 4ug4D	w 	Peripheral helixes *Check with nDOPE
-4zzhA w   not sure about proposed domain 1, might be too small and unpacked
+4zzhA w	not sure about proposed domain 1, might be too small and unpacked
 
 
 
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
-4zl4B w   Algorithms are panicking, not agreeing with prodata either
-5bq9B w   missing a big chunk of structure, however the domains are easy to see
-5byhM w   really unpacked protein, part of a big multichain complex, strange stuff
+4zl4B w	Algorithms are panicking, not agreeing with prodata either
+5bq9B w	missing a big chunk of structure, however the domains are easy to see
+5byhM w	really unpacked protein, part of a big multichain complex, strange stuff
 #
-w:waiting for action
-r:resolved
-c:consulting Christine
+w	waiting for action	
+r	resolved	
+c	consulting Christine	
 
 ### Notes:
 Check the papers for hard cases.
