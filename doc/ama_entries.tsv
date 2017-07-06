@@ -2,7 +2,7 @@ pdbID	status	reason
 		##This is where we keep a list of interesting domchops.Remember to keep the chain ID in pdbID 
 		##Higher entries are older, lower entries are newer. (only true for {w} entries) 
 		## Please use (Tab) button to separate fields, which essentially enters \t
-		## Each line must has either no content or 3 fields separated by 2 \tab.
+		## Each line MUST contain 3 fields separated by 2 \tab, even if all 3 fileds are blank
 		## Do not use quotes anywhere in the file cuz it breaks
 ## For example		
 		5a01c \tab w \tab Bad CC results, to be discussed
@@ -48,8 +48,8 @@ pdbID	status	reason
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
 4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
-
-
+		
+		
 ##Ilya
 4zl4B	w	Algorithms are panicking, not agreeing with prodata either
 5bq9B	w	missing a big chunk of structure, however the domains are easy to see
