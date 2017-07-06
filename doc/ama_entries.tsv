@@ -3,7 +3,7 @@ pdbID	status	reason
 		##Higher entries are older, lower entries are newer. (only true for {w} entries) 
 		## Please use (Tab) button to separate fields, which essentially enters \t
 		## Each line must has either no content or 3 fields separated by 2 \tab.
-		## Do not use \" anywhere in the file cuz it breaks
+		## Do not use quotes anywhere in the file cuz it breaks
 ## For example		
 		5a01c \tab w \tab Bad CC results, to be discussed
 ##Chopped cases		
