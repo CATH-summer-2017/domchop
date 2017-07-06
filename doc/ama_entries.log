@@ -37,6 +37,8 @@ pdbID	reason
 5bu3A   w   Not sure about the helix that seems to be a connecting region between the barrels in the structure
 5a60A   w   Incomplete structure- many gaps -  not sure if I should chop it
 5by3A   w   Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
+
+
 ##Feng
 4ztcA	w 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
 5a22A	w 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
