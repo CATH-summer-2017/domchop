@@ -130,7 +130,7 @@ if __name__ == '__main__':
 		import multiprocessing as mp
 		manager = mp.Manager()
 		q = manager.Queue();   
-		pool = mp.Pool( mp.cpu_count() - 1 );
+		pool = mp.Pool( mp.cpu_count() + 2);
 
 		
 		### CSV listener I/O to "fname"
