@@ -19,7 +19,7 @@ pdbID	status	reason
 		
 ##Commented cases,		
 4qslH	w	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
-4r04A	w	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
+4r04A	r	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
 4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
 4rcnB	w	rasmol rendering problem
 2mxvA	w	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
