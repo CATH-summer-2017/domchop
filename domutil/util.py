@@ -1,5 +1,9 @@
 from modeller import *
 from modeller.scripts import complete_pdb
+
+### Enable this line to reduce verbositys
+# log.none()
+
 def get_nDOPE( pdbfile, env = None):
 # pdbfile = "4xz8A_chop"
 #mdl = complete_pdb(env, "1fas")
@@ -45,17 +49,22 @@ def worker( i, q, slist):
 	# global wait, waitname
 	# pdbfile = onlyfiles[i];
 	(wait,waitname,reset,fname,env) = slist
+
 	pdbfile = i;
 	import os 
-	pdbname = os.path.basename(pdbfile);
 
-	if pdbname.split(".")[-1] in ["bak","csv"] or wait:
+	pdbname = os.path.basename(pdbfile);
+	if pdbname.split(".")[-1] in ["bak","csv"]:
+		return 
+	if wait:
+		nDOPE = 0
 		if pdbname == waitname:
 			q.put('start');
 			nDOPE = get_nDOPE( pdbfile, env = env)
 		row = [pdbname, nDOPE ];
+
 	else:	
-		print("\n\n//Testing structure from %s" % pdbfile)
+		# print("\n\n//Testing structure from %s" % pdbfile)
 		nDOPE = get_nDOPE( pdbfile, env = env)				
 		row = [pdbname, nDOPE] ;
 	q.put( row );

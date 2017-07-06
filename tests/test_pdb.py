@@ -38,8 +38,8 @@ sys.path.append(os.path.abspath(
 								)
 				)
 
-for x in sys.path:
-	print(x)
+# for x in sys.path:
+	# print(x)
 # cwd = os.getcwd();
 
 import unittest
@@ -127,12 +127,15 @@ if __name__ == '__main__':
 		if reset:
 			open(fname,"w").close()
 
+		##### Parallel routine
 		import multiprocessing as mp
+		import logging
+		# mpl = mp.log_to_stderr()
+		# mpl.setLevel(logging.INFO)
 		manager = mp.Manager()
 		q = manager.Queue();   
-		pool = mp.Pool( mp.cpu_count() + 2);
+		pool = mp.Pool( mp.cpu_count() - 1);
 
-		
 		### CSV listener I/O to "fname"
 		watcher = pool.apply_async( csv_listener, (q,));
 		
@@ -152,10 +155,10 @@ if __name__ == '__main__':
 		pool.close()
 
 
-		#### Single-thread Proc
-		import csv
-		nDOPEs = [];
-		tested_files = [];
+		#### Single-thread routine	
+		# import csv
+		# nDOPEs = [];
+		# tested_files = [];
 		# with open(fname, "a") as f:
 		# 	c = csv.writer(f)
 		# 	for pdbfile in onlyfiles:
@@ -172,9 +175,9 @@ if __name__ == '__main__':
 		# 		c.writerow( [pdbname, nDOPE] )
 		# 		f.flush()
 			
-			# for row_vals in zip(tested_files, nDOPEs):
-			# 	# row = "\t".join(row_vals)+"\n"
-			# 	c.writerow(row_vals);
+		# 	for row_vals in zip(tested_files, nDOPEs):
+		# 		# row = "\t".join(row_vals)+"\n"
+		# 		c.writerow(row_vals);
 
 	else:
 		unittest.main();
