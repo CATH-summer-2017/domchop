@@ -2,7 +2,8 @@ pdbID	status	reason
 		##This is where we keep a list of interesting domchops.Remember to keep the chain ID in pdbID 
 		##Higher entries are older, lower entries are newer. (only true for {w} entries) 
 		## Please use "Tab" button to separate fields, which essentially enters \t
-## For example
+		## Each line must has either no content or 3 fields separated by 2 \tab.
+## For example		
 		5a01c \tab w \tab Bad CC results, to be discussed
 ##Chopped cases		
 pdbID	status	reason
