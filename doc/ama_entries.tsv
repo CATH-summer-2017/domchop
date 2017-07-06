@@ -1,5 +1,6 @@
-##This is where we keep a list of interesting domchops.Remember to keep the chain ID in pdbID 	 	 
-##Higher entries are older, lower entries are newer. (only true for {w} entries) 		
+pdbID	status	reason
+		##This is where we keep a list of interesting domchops.Remember to keep the chain ID in pdbID 
+		##Higher entries are older, lower entries are newer. (only true for {w} entries) 
 ##Chopped cases		
 pdbID	status	reason
 4txaA	w 	manual assignment
@@ -45,9 +46,9 @@ pdbID	status	reason
 5bq9B	w	missing a big chunk of structure, however the domains are easy to see
 5byhM	w	really unpacked protein, part of a big multichain complex, strange stuff
 #Symbols:		
-w	waiting for action	
-r	resolved	
-c	consulting Christine	
+	w	waiting for action	
+	r	resolved	
+	c	consulting Christine	
 		
 ### Notes:		
-Check the papers for hard cases.		
+		Check the papers for hard cases.		
