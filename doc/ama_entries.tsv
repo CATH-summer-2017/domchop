@@ -42,6 +42,7 @@ pdbID	status	reason
 5a22A	c 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
 4ug4D	r,bp 	Peripheral helixes *Check with nDOPE
 4zzhA	r	not sure about proposed domain 1, might be too small and unpacked
+4zphB	w	incorrect rendering, 2 hits to a single template
 		
 		
 		
