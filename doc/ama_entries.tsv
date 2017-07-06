@@ -11,7 +11,8 @@ pdbID	status	reason
 5akpB	c	helical linker, dom-dom interaction rechopped,
 4ye9A	r	strange case, most methods diagree
 5bmtB	r	CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
-##Commented cases, To be Chopped		
+		
+##Commented cases,		
 4qslH	w	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
 4r04A	w	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
 4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
@@ -51,4 +52,4 @@ pdbID	status	reason
 	c	consulting Christine
 		
 ### Notes:		
-		Check the papers for hard cases.		
+		Check the papers for hard cases.
