@@ -9,10 +9,10 @@ pdbID	status	reason
 ##Chopped cases		
 pdbID	status	reason
 4txaA	w 	manual assignment
-4w22K	w 	unpacked insertion in dom2
+4w22K	a 	unpacked insertion in dom2
 4rcnB	w 	incorrect cathedral rendering?
 4rm6A	l 	Long repeated stacked beta sheets (non-globular).
-5af3B	w 	Strong dom-dom interaction and multimerisation
+5af3B	a 	Strong dom-dom interaction and multimerisation
 5akpB	c	helical linker, dom-dom interaction rechopped,
 4ye9A	r	strange case, most methods diagree4
 5bmtB	r	CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
