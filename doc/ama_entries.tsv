@@ -18,7 +18,7 @@ pdbID	status	reason
 5bmtB	r	CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
 		
 ##Commented cases,		
-4qslH	w	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
+4qslH	r	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
 4r04A	r,bp	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
 4ufqA	r	Monomer of 3-chain MCD. Stacking instead of globular packing.
 4rcnB	w	rasmol rendering problem
@@ -40,7 +40,7 @@ pdbID	status	reason
 ##Feng		
 4ztcA	r 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
 5a22A	c 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
-4ug4D	w 	Peripheral helixes *Check with nDOPE
+4ug4D	r,bp 	Peripheral helixes *Check with nDOPE
 4zzhA	r	not sure about proposed domain 1, might be too small and unpacked
 		
 		
@@ -59,6 +59,7 @@ pdbID	status	reason
 	w	waiting for action
 	r	resolved
 	c	consulting Christine
+	bp	potential blog post
 		
 ### Notes:		
 		Check the papers for hard cases.
