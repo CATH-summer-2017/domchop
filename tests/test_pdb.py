@@ -135,6 +135,7 @@ if __name__ == '__main__':
 			open(fname,"w").close()
 
 		##### Parallel routine
+		## The pralallel routine seems to write to file repeatedly for weird reason
 		if args.num_threads is not None :
 			import multiprocessing as mp
 			import logging
