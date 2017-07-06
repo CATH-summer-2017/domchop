@@ -43,7 +43,7 @@ for x in sys.path:
 # cwd = os.getcwd();
 
 import unittest
-from domutil.util import get_nDOPE
+from domutil.util import *
 
 
 class testcase(unittest.TestCase):
@@ -90,6 +90,8 @@ class testcase(unittest.TestCase):
 
 if __name__ == '__main__':
 	
+
+
 	if args.newref or args.input_directory:
 		from modeller import *
 		from modeller.scripts import complete_pdb
@@ -112,37 +114,63 @@ if __name__ == '__main__':
 			onlyfiles = [mypath]
 
 		onlyfiles = sorted(onlyfiles)
-		nDOPEs = [];
-		tested_files = [];
-
 
 		# print(onlyfiles)
 
 		wait = 0;
 		waitname = "4j27A02";
-		reset = 0;
+		reset = 1;
+		fname = "ref_DOPEs.csv"
+
+		shared_lst = (wait,waitname,reset,fname,env);
 
 		if reset:
-			open("ref_DOPEs.csv","w").close()
+			open(fname,"w").close()
 
+		import multiprocessing as mp
+		manager = mp.Manager()
+		q = manager.Queue();   
+		pool = mp.Pool( mp.cpu_count() - 1 );
+
+		
+		### CSV listener I/O to "fname"
+		watcher = pool.apply_async( csv_listener, (q,));
+		
+		#fire off workers
+		jobs = [];
+		# print(onlyfiles)
+		for pdbfile in onlyfiles:
+			job = pool.apply_async( worker, (pdbfile,q,shared_lst) )
+			jobs.append( job )
+
+		# collect results from the workers through the pool result queue
+		for job in jobs:
+			job.get()
+
+		#now we are done, kill the listener
+		q.put('kill')
+		pool.close()
+
+
+		#### Single-thread Proc
 		import csv
-
-		with open("ref_DOPEs.csv", "a") as f:
-			c = csv.writer(f)
-
-			for pdbfile in onlyfiles:
-				pdbname = os.path.basename(pdbfile);
-				if pdbfile.split(".")[-1] in ["bak"] or wait:
-					# onlyfiles.pop(pdbfile);
-					if pdbname == waitname:
-						wait = 0;
-					continue
-				print("\n\n//Testing structure from %s" % pdbfile)
-				nDOPE = get_nDOPE( join(pdbfile), env = env)
-				nDOPEs.append( nDOPE );
-				tested_files.append( pdbname );
-				c.writerow( [pdbname, nDOPE] )
-				f.flush()
+		nDOPEs = [];
+		tested_files = [];
+		# with open(fname, "a") as f:
+		# 	c = csv.writer(f)
+		# 	for pdbfile in onlyfiles:
+		# 		pdbname = os.path.basename(pdbfile);
+		# 		if pdbfile.split(".")[-1] in ["bak"] or wait:
+		# 			# onlyfiles.pop(pdbfile);
+		# 			if pdbname == waitname:
+		# 				wait = 0;
+		# 			continue
+		# 		print("\n\n//Testing structure from %s" % pdbfile)
+		# 		nDOPE = get_nDOPE( join(pdbfile), env = env)
+		# 		nDOPEs.append( nDOPE );
+		# 		tested_files.append( pdbname );
+		# 		c.writerow( [pdbname, nDOPE] )
+		# 		f.flush()
 			
 			# for row_vals in zip(tested_files, nDOPEs):
 			# 	# row = "\t".join(row_vals)+"\n"
