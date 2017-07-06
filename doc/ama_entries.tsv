@@ -11,7 +11,7 @@ pdbID	status	reason
 4txaA	w 	manual assignment
 4w22K	w 	unpacked insertion in dom2
 4rcnB	w 	incorrect cathedral rendering?
-4rm6A	w 	Long repeated stacked beta sheets (non-globular).
+4rm6A	l 	Long repeated stacked beta sheets (non-globular).
 5af3B	w 	Strong dom-dom interaction and multimerisation
 5akpB	c	helical linker, dom-dom interaction rechopped,
 4ye9A	r	strange case, most methods diagree
@@ -22,7 +22,7 @@ pdbID	status	reason
 4r04A	r	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
 4ufqA	w	Monomer of 3-chain MCD. Stacking instead of globular packing.
 4rcnB	w	rasmol rendering problem
-2mxvA	w	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
+2mxvA	r	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
 		
 		
 		
