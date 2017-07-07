@@ -1,0 +1,22 @@
+
+linux_utils
+
+running a process in background
+```
+watch top &
+```
+
+list your background jobs with
+
+```
+jobs
+```
+
+bring to foreground
+```
+fg 1
+```
+
+kill it with "`Ctrl-C`"
+
+
