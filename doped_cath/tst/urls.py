@@ -4,25 +4,25 @@ from . import views
 
 urlpatterns = [
     # ex: /tst/
-    url(r'^$', views.index, name='index'),
+    # url(r'^$', views.index, name='index'),
 
 	# ex: /tst/hello    
     url(r'^hello$', views.index, name='hello'),
 
     # ex: /tst/5/
-    url(r'^(?P<question_id>[0-9]+)/$', 
-    	views.detail,
-    	name='detail'),
+    # url(r'^(?P<question_id>[0-9]+)/$', 
+    # 	views.detail,
+    # 	name='detail'),
     
-    # ex: /tst/5/results/
-    url(r'^(?P<question_id>[0-9]+)/results/$',
-    	views.results,
-    	name = 'results'),
+    # # ex: /tst/5/results/
+    # url(r'^(?P<question_id>[0-9]+)/results/$',
+    # 	views.results,
+    # 	name = 'results'),
     
-    # ex:/tst/5/vote/
-    url(r'^(?P<question_id>[0-9]+)/vote/$',
-    	views.vote,
-    	name = 'vote'),
+    # # ex:/tst/5/vote/
+    # url(r'^(?P<question_id>[0-9]+)/vote/$',
+    # 	views.vote,
+    # 	name = 'vote'),
 
 
     # ex:/tst/

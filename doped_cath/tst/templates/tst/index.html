@@ -1,0 +1,91 @@
+<head>
+	
+{% include "./style.html" %}
+
+
+ </head>
+
+<body>
+
+
+<div class="container">
+<section>
+
+<div class="mt-1">
+  <h3 class="display-3">
+   Doped_CATH
+  </h3>
+</div>
+
+<p class="lead">
+	This page is generated from a list of CATH domain ID's, usually suspicious of being badly packed (high nDOPE).
+  Each row represents a single domain from CATH.
+  There is no button you can click, but clicking on shiny bluish text will lead you to domain page or superfamily page.
+</p>
+
+<p>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#config" aria-expanded="true" aria-controls="config">
+  Config
+</button>
+</p>
+
+</section>
+
+
+{% include "./config.html" %}
+
+<!--     <ul>
+        <li><a href="/tst/{{ q.id }}/">
+        {{q.id}}||
+        {{q.question_text }}||
+        {{q.pub_date}}||
+        {{q.choice_set.all}}</a></li>
+    </ul> -->
+{% if domain_list %}
+<p class="table-heading">
+Displaying {{domain_list|length}} putative superfamily clusters for merging
+</p>
+    <table class="table table-sm">
+		<thead>
+			<th>{{domain_list.1}}Domain id</th>
+			<th>Superfamily.ID</th>
+			<th>Superfamily.S35_count</th>
+			<th>Domain Length</th>
+			<th>Raw DOPE</th>
+			<th>Normalised DOPE</th>
+		</thead>
+		<tbody>
+			
+			
+
+			{% for q in domain_list %}
+			<tr>
+				<th>{{q.id }}</th>
+				<th><a href="/tst/domain/{{ q.id }}/">{{q.question_text}}</a></th>
+				<th>{{q.pub_date}}</th>
+				<th>0</th>
+				<th>0</th>
+				<th>0</th>
+			</tr>		
+			{% endfor %}
+			{# {% for valst in domain_list.values_list %} #}
+	<!--		<tr>
+				<th>{{valst.0}}</th>
+				<th>{{valst.1}}</th>
+				<th>{{valst.2}}</th>
+				<th>{{valst.3}}</th>
+				<th>{{valst.4}}</th>
+
+			</tr>
+			{# {% endfor %} #}
+	-->
+		</tbody>
+	</table>
+
+{% else %}
+    <p>No domain list is provided.</p>
+{% endif %}
+
+
+</div>
+</body>
