@@ -43,6 +43,7 @@ pdbID	status	reason
 4ug4D	r,bp 	Peripheral helixes *Check with nDOPE
 4zzhA	r	not sure about proposed domain 1, might be too small and unpacked
 4zphB	w	incorrect rendering, 2 hits to a single template
+4zsxA	bp	Artificial fusion linker produced a partial Cathedral match! Checking literature.
 		
 		
 		
