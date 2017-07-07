@@ -34,7 +34,11 @@ pdbID	status	reason
 5bu3A	w	Not sure about the helix that seems to be a connecting region between the barrels in the structure
 5a60A	w	Incomplete structure- many gaps -  not sure if I should chop it
 5by3A	w	Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
-		
+5ch6B	w	No clue
+5chsA	w	Intereting structure. Literature doesn't help.
+5a8lQ	w	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
+5ax7B	w	Results give 2 domains, I think it should be three. Literature not helping.
+
 		
 		
 ##Feng		
@@ -53,10 +57,15 @@ pdbID	status	reason
 		
 		
 ##Ilya		
-4zl4B	w	Algorithms are panicking, not agreeing with prodata either (visit the paper)
-5bq9B	w	missing a big chunk of structure, however the domains are easy to see (just chop it)
-5byhM	w	really unpacked protein, part of a big multichain complex, strange stuff (cut red in half, add blue helices to green)
-5c6tA	w	not sure if I should include the linkers (remove the linkers)
+4zl4B	r	Algorithms are panicking, not agreeing with prodata either (visit the paper)
+5bq9B	r	missing a big chunk of structure, however the domains are easy to see (just chop it)
+5byhM	r	really unpacked protein, part of a big multichain complex, strange stuff (cut red in half, add blue helices to green)
+5c6tA	r	not sure if I should include the linkers (remove the linkers)
+5a63A	w	complicated case, hard to separate the domains, single helix is part of other MCD
+5c3lB	w	is this even a domain?
+5c6gA	w	part of a big MCD
+
+
 #Symbols:		
 	w	waiting for action
 	r	resolved
