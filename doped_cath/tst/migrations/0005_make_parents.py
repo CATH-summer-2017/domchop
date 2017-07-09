@@ -31,26 +31,34 @@ def create_parent(apps, schema_editor):
     
     # print( len(classification.objects.all()),
         # file=sys.stdout )
-    nodes = classification.objects.all();
-    cnt = 0;
-    imax = len(nodes);
     # for i in 
-    for (i,node) in enumerate(nodes):
-        if not i % 50:
-            print >>sys.stdout, '%d of %d' % (i,imax)
-        while not node.level_id == 1:
-        # while not verify_root(node):
 
+    for lv_id,level in list(enumerate(levels))[::-1]:
+        if lv_id == 1:
+            #### Stop if at root already
+            continue
+        print >>sys.stdout, 'constructing %s' % (level);
+        nodes = classification.objects.filter(level_id=lv_id);
+        pnodes = classification.objects.filter(level_id=lv_id-1);
+        imax = len(nodes);
+        for (i,node) in enumerate(nodes):
+            if not i % 50:
+                print >>sys.stdout, '%d of %d' % (i,imax)
             if node.parent:
-                node = node.parent;
+                continue #### skip this node if already with a parent
             else:
-                pnode = copy(node)
-                setattr( pnode,  levels[pnode.level_id],  None)
-                pnode.level_id += -1
                 
-                # q = classification.objects.filter(level_id=pnode.level_id).filter(**pnode.node_dict());
-                q = classification.objects.filter(**pnode.node_dict());
-                if not q.exists():                                   
+                #### Make a parent node inheriting the attributes
+                pnode = copy(node)
+                setattr( pnode,  level,  None)
+                pnode.level_id = lv_id-1  
+
+                
+                
+                q = pnodes.filter(**pnode.node_dict());
+
+                if not q.exists():
+                #### Create this putative node if not in the database                   
                     pnode.pk = None
                     pnode.id = None
                     # print >> sys.stdout, str(node.__dict__)
@@ -60,35 +68,63 @@ def create_parent(apps, schema_editor):
                         print >> sys.stdout, str(node.__dict__)
 
                     pnode.save()
-                    # print >> sys.stdout,pnode
-                    # classification.objects.update()
-                    # cnt += 1
-                    # if not cnt%20:
-                        # print >> sys.stdout,cnt
-                        # print >> sys.stdout, node.id
 
+                    ### Add newly created node to Parent Nodes List
+                    pnodes = pnodes | classification.objects.filter(id=pnode.id)
                 else:
+                #### Link to existing node in the dataset.
                     pnode = q[0]
-                    # print >> sys.stdout, 'clashed node detected'
 
-                # print >> sys.stdout, (pnode.homsf)      
+                #### In both case, save the newly identified link
                 node.parent_id = pnode.id;
                 node.save()
                 node = pnode;
-                # pnode
-                # pnode.classification_set.add(node)
-                # node.save()
-
-                #     node.classification_id = pnode.pk
-                #     onode.save()  
-                # if created:
 
 
+    # nodes = classification.objects.all();
+    # cnt = 0;
+    # imax = len(nodes);
+    
+    # for (i,node) in enumerate(nodes):
+    #     if not i % 50:
+    #         print >>sys.stdout, '%d of %d' % (i,imax)
+    #     while not node.level_id == 1:
+
+    #         if node.parent:
+    #             node = node.parent;
+    #         else:
+    #             pnode = copy(node)
+    #             setattr( pnode,  levels[pnode.level_id],  None)
+    #             pnode.level_id += -1
                 
-                # classification.objects.create(
-                    # )
-                # node.
-                # pass
+    #             # q = classification.objects.filter(level_id=pnode.level_id).filter(**pnode.node_dict());
+    #             q = classification.objects.filter(**pnode.node_dict());
+    #             if not q.exists():                                   
+    #                 pnode.pk = None
+    #                 pnode.id = None
+    #                 # print >> sys.stdout, str(node.__dict__)
+    #                 # node.classification_id = 1;
+    #                 if not pnode.level_id:
+    #                     print >> sys.stdout,'\n Dropped to zero!!!'
+    #                     print >> sys.stdout, str(node.__dict__)
+
+    #                 pnode.save()
+    #                 # print >> sys.stdout,pnode
+    #                 # classification.objects.update()
+    #                 # cnt += 1
+    #                 # if not cnt%20:
+    #                     # print >> sys.stdout,cnt
+    #                     # print >> sys.stdout, node.id
+
+    #             else:
+    #                 pnode = q[0]
+    #                 # print >> sys.stdout, 'clashed node detected'
+
+    #             # print >> sys.stdout, (pnode.homsf)      
+    #             node.parent_id = pnode.id;
+    #             node.save()
+    #             node = pnode;
+
 
     msg = '\n MSG: found %d classification nodes'% len(classification.objects.all());
     print >> sys.stdout, msg
