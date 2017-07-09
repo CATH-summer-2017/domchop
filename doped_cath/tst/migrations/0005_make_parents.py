@@ -45,7 +45,7 @@ def create_parent(apps, schema_editor):
         imax = len(nodes);
         for (i,node) in enumerate(nodes):
             if not i % 50:
-                print >>sys.stdout, 'Sweeping %d of %d %s\s' % (i,imax,level)
+                print >>sys.stdout, 'Sweeping %d of %d %s' % (i,imax,level)
             if node.parent:
                 continue #### skip this node if already with a parent
             else:
