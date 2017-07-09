@@ -16,7 +16,8 @@ def verify_root(node):
             or  node.s95
             or  node.s100)
 
-levels=['root',
+levels=[ None,
+        'root',
         'Class',
         'arch',
         'topo',
@@ -33,6 +34,7 @@ def create_parent(apps, schema_editor):
     nodes = classification.objects.all();
     cnt = 0;
     imax = len(nodes);
+    # for i in 
     for (i,node) in enumerate(nodes):
         if not i % 50:
             print >>sys.stdout, '%d of %d' % (i,imax)
