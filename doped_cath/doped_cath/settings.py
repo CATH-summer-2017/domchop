@@ -25,13 +25,17 @@ SECRET_KEY = '#*mtl@gpm+fw=50^%-5wqw*^j#wce#nkx+mir13d&zygj*=l(5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'testserver',
+'localhost',
+'127.0.0.1',
+    ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'tst.apps.Config',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'doped_cath.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CATH',
+        'NAME': 'DJANGO_CATH',
         'USER': 'root',
         'PASSWORD': 'GF,960522',
         'HOST': '127.0.0.1',
@@ -122,3 +126,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

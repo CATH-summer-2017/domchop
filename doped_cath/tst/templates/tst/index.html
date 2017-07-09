@@ -2,8 +2,9 @@
 	
 {% include "./style.html" %}
 
-
+{% load static %}
  </head>
+
 
 <body>
 
@@ -41,13 +42,18 @@
         {{q.pub_date}}||
         {{q.choice_set.all}}</a></li>
     </ul> -->
+{{tst_a}}
+
 {% if domain_list %}
+
 <p class="table-heading">
 Displaying {{domain_list|length}} putative superfamily clusters for merging
 </p>
+	{{request}}
     <table class="table table-sm">
 		<thead>
-			<th>{{domain_list.1}}Domain id</th>
+			<th>Domain id</th>
+			<th>PDB</th>
 			<th>Superfamily.ID</th>
 			<th>Superfamily.S35_count</th>
 			<th>Domain Length</th>
@@ -58,14 +64,21 @@ Displaying {{domain_list|length}} putative superfamily clusters for merging
 			
 			
 
-			{% for q in domain_list %}
+			{% for d in domain_list %}
 			<tr>
-				<th>{{q.id }}</th>
-				<th><a href="/tst/domain/{{ q.id }}/">{{q.question_text}}</a></th>
-				<th>{{q.pub_date}}</th>
-				<th>0</th>
-				<th>0</th>
-				<th>0</th>
+				<th><a target="_blank" href="http://www.cathdb.info/version/current/domain/{{d.domain_id}}/">{{d.domain_id}}</a></th>
+				<th><a target="_blank" href="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb"><img src="{% static "imgs/rasmol.png" %}" alt="rasmol_pdb"/></a></th>
+				{# <th><a href="/tst/domain/{{ d.domain_id }}/">{{d.domain_id}}</a></th> #}
+				<th>
+				<a target="_blank" href="/tst/superfamily/{{d.superfamily}}/">
+				{{d.superfamily}}</a> </th>
+				{# {{d.superfamily}}				</th> #}
+				{# <th>{{d.classification.get_s35cnt}}</th> #}
+				<th>{{d.s35cnt}}</th>
+				<th>{{d.domain_length}}</th>
+				<th>{{d.raw_DOPE}}</th>
+				{# <th>{{d.classification}}</th> #}
+				<th>{{d.nDOPE}}</th>
 			</tr>		
 			{% endfor %}
 			{# {% for valst in domain_list.values_list %} #}

@@ -11,8 +11,9 @@ from django.template import loader
 
 from .models import *
 
-
-
+from CATH_API.lib import *
+import urllib
+import re
 
 def index(request):
 
@@ -31,16 +32,57 @@ def vote(request, question_id):
 def domain_detail(request, domain_id):
     return HttpResponse("You're viewing detail page on CATH domian %s." % domain_id)
 
-def domain_collection(request):
-	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+def view_domain_list(request, domain_list):
 
 	template = loader.get_template('tst/index.html')
+	# for 
+	sf_list = CATH_superfamily('v4_1_0')[1]
 
-	context = {'domain_list':latest_question_list
+	for q in domain_list:
+		q.s35cnt = 'not found'
+		q_sf =  q.superfamily();
+		for sf in sf_list:
+			if 	sf['cath_id'] == q_sf:
+				q.s35cnt = sf['child_count_s35_code'];
+				break
+	# domain_list = domain_list.all().order_by('-nDOPE','-s35cnt')
+	context = {'domain_list':domain_list,'tst_a':0,
 				}
 	return render(request,
 				 'tst/index.html',
 				  context)
 
+def domain_collection(request):
+	# latest_question_list = Question.objects.order_by('-pub_date')[:5]
+	dquery = request.GET.get('dquery', [])
+
+	# dquery = ['1000','1tf6D01']
+	if dquery:
+		dquery = re.sub('[^A-Za-z0-9\,]+', '', dquery).split(',');
+		domain_list = domain.objects.filter(domain_id__in=dquery)
+	else:
+		# domain_list
+		domain_list = domain.objects.filter(nDOPE__gte=1.5);
+	# domain_list = 
+
+	domain_list = domain_list.order_by('classification__Class','-nDOPE')
+	# request.GET
+	# tst_a = dquery
+	'tst/domain/?dquery=1gjjA00&dquery=4567Cud'
+
+	return view_domain_list(request,domain_list)
+
+
 def homsf_s35_collection(request, homsf_id):
-    return HttpResponse("You're viewing the s35 representative structures of homology family %s" % homsf_id)
+	lst = (int(x) for x in homsf_id.split('.'))
+	homsf = classification.objects.filter(Class=next(lst,None),
+								arch=next(lst,None),
+								topo=next(lst,None),
+								homsf=next(lst,None),
+								# s35=next(lst,None),
+								)[0]
+
+	domain_list = homsf.domain_set.all()
+	return view_domain_list(request,domain_list)
+    
+    # return HttpResponse("You're viewing the s35 representative structures of homology family %s" % homsf_id)

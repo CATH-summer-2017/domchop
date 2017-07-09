@@ -7,7 +7,7 @@ urlpatterns = [
     # url(r'^$', views.index, name='index'),
 
 	# ex: /tst/hello    
-    url(r'^hello$', views.index, name='hello'),
+    url(r'^$', views.index, name='hello'),
 
     # ex: /tst/5/
     # url(r'^(?P<question_id>[0-9]+)/$', 
@@ -26,7 +26,7 @@ urlpatterns = [
 
 
     # ex:/tst/
-    url(r'^domain/$',
+    url(r'^domain/',
     	views.domain_collection,
     	name = 'domain_collection'),
 
