@@ -37,13 +37,15 @@ def create_parent(apps, schema_editor):
         if lv_id == 1:
             #### Stop if at root already
             continue
-        print >>sys.stdout, 'constructing %s' % (level);
+        plevel=levels[lv_id-1]
+
+        print >>sys.stdout, 'constructing %s' % (plevel);
         nodes = classification.objects.filter(level_id=lv_id);
         pnodes = classification.objects.filter(level_id=lv_id-1);
         imax = len(nodes);
         for (i,node) in enumerate(nodes):
             if not i % 50:
-                print >>sys.stdout, '%d of %d' % (i,imax)
+                print >>sys.stdout, 'Sweeping %d of %d %s\s' % (i,imax,level)
             if node.parent:
                 continue #### skip this node if already with a parent
             else:
@@ -54,33 +56,38 @@ def create_parent(apps, schema_editor):
                 pnode.level_id = lv_id-1  
 
                 
-                
-                q = pnodes.filter(**pnode.node_dict());
-
-                if not q.exists():
-                #### Create this putative node if not in the database                   
-                    pnode.pk = None
-                    pnode.id = None
-                    # print >> sys.stdout, str(node.__dict__)
-                    # node.classification_id = 1;
-                    if not pnode.level_id:
-                        print >> sys.stdout,'\n Dropped to zero!!!'
-                        print >> sys.stdout, str(node.__dict__)
-
-                    pnode.save()
-
-                    ### Add newly created node to Parent Nodes List
-                    pnodes = pnodes | classification.objects.filter(id=pnode.id)
+                # q = pnodes.filter(**pnode.node_dict());
+                if lv_id == 2:
+                    #### Classes level directly stem from the root.
+                    # pnode = pnodes[0];
+                    q = pnodes.filter(**pnode.node_dict());
                 else:
-                #### Link to existing node in the dataset.
-                    pnode = q[0]
+                    q = pnodes.filter(**{plevel:getattr(  pnode,  plevel)});
 
-                #### In both case, save the newly identified link
+                    if not q.exists():
+                    #### Create this putative node if not in the database                   
+                        pnode.pk = None
+                        pnode.id = None
+                        # print >> sys.stdout, str(node.__dict__)
+                        # node.classification_id = 1;
+                        if not pnode.level_id:
+                            print >> sys.stdout,'\n Dropped to zero!!!'
+                            print >> sys.stdout, str(node.__dict__)
+
+                        pnode.save()
+
+                        ### Add newly created node to Parent Nodes List
+                        pnodes = pnodes | classification.objects.filter(id=pnode.id)
+                    else:
+                    #### Link to existing node in the dataset.
+                        pnode = q[0]
+
+                #### In all casees, save the newly identified link
                 node.parent_id = pnode.id;
                 node.save()
                 node = pnode;
 
-
+    #### Old slow algorithms: No Backprop.
     # nodes = classification.objects.all();
     # cnt = 0;
     # imax = len(nodes);
