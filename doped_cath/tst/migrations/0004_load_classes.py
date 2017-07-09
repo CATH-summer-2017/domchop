@@ -31,7 +31,7 @@ INSERT INTO DJANGO_CATH.tst_classification
  (Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id)
 select 
  class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id from temp_class
- limit 500;
+ ;
 '''
 
 '''
