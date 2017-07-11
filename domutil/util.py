@@ -1,6 +1,5 @@
 from modeller import *
 from modeller.scripts import complete_pdb
-
 ### Enable this line to reduce verbositys
 # log.none()
 
@@ -20,6 +19,7 @@ def get_nDOPE( pdbfile, env = None):
 
 	mdl = complete_pdb(env, pdbfile)
 	nDOPE = mdl.assess_normalized_dope()
+	# pdbname = os.path.basename(pdbfile)
 	return nDOPE
 	
 import csv
