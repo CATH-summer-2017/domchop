@@ -51,7 +51,8 @@ pdbID	status	reason
 4zzhA	r	not sure about proposed domain 1, might be too small and unpacked
 4zphB	w	incorrect rendering, 2 hits to a single template
 4zsxA	bp	Artificial fusion linker produced a partial Cathedral match! Checking literature.
-2n53A	r	Better alternative PDB structure available.		
+2n53A	r	Better alternative PDB structure available.
+5c9iA	w	Two manual proposal. Refer to 1C9P.
 		
 		
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
