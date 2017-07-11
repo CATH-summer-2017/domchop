@@ -73,7 +73,7 @@ pdbID	status	reason
 5cwwB	w	looks like a WCD but maybe some parts need to be chopped off because they might be parts of MCD
 5cwsK	w	this definetly doesnt belong in CATH but very nice to look at
 3jb6A	w	found a chopping proposed in the article, seems plausible but I am not 100% sure.   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5086257/
-
+5d06A	w	complicated case, chopping based on paper is a bit strange, more info in the comment.   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4837477/
 
 #Symbols:		
 	w	waiting for action
