@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from tst.models import *
 from django.db import models, migrations
 from django.forms.models import model_to_dict
 import sys
@@ -27,7 +28,7 @@ levels=[ None,
         's95',
         's100'];
 def create_parent(apps, schema_editor):
-    classification = apps.get_model("tst", "classification")
+    # classification = apps.get_model("tst", "classification")
     
     # print( len(classification.objects.all()),
         # file=sys.stdout )
@@ -36,8 +37,10 @@ def create_parent(apps, schema_editor):
     for lv_id,level in list(enumerate(levels))[::-1]:
         if lv_id == 1:
             #### Stop if at root already
-            continue
+            # continue
+            break
         plevel=levels[lv_id-1]
+        print >>sys.stdout,plevel
 
         print >>sys.stdout, 'constructing %s' % (plevel);
         nodes = classification.objects.filter(level_id=lv_id);
@@ -52,40 +55,48 @@ def create_parent(apps, schema_editor):
                 
                 #### Make a parent node inheriting the attributes
                 pnode = copy(node)
-                setattr( pnode,  level,  None)
+                # if lv_id >=7:
+                    # setattr( pnode,  level,  1)
+                # elif level_id <7:
+                setattr( pnode,  level,  0)
                 pnode.level_id = lv_id-1  
 
                 
                 # q = pnodes.filter(**pnode.node_dict());
                 if lv_id == 2:
                     #### Classes level directly stem from the root.
-                    # pnode = pnodes[0];
-                    q = pnodes.filter(**pnode.node_dict());
+                    # q = pnodes.filter(**pnode.node_dict());
+                    pass
                 else:
-                    q = pnodes.filter(**{plevel:getattr(  pnode,  plevel)});
+                    # q = pnodes.filter(**{plevel:getattr(  pnode,  plevel)});
+                    q = pnodes.filter(**pnode.node_dict());
 
-                    if not q.exists():
-                    #### Create this putative node if not in the database                   
-                        pnode.pk = None
-                        pnode.id = None
-                        # print >> sys.stdout, str(node.__dict__)
-                        # node.classification_id = 1;
-                        if not pnode.level_id:
-                            print >> sys.stdout,'\n Dropped to zero!!!'
-                            print >> sys.stdout, str(node.__dict__)
+                if not q.exists():
+                #### Create this putative node if not in the database                   
+                    pnode.pk = None
+                    pnode.id = None
 
-                        pnode.save()
+                    if not pnode.level_id:
+                        print >> sys.stdout,'\n Dropped to zero!!!'
+                        print >> sys.stdout, str(node.__dict__)
 
-                        ### Add newly created node to Parent Nodes List
-                        pnodes = pnodes | classification.objects.filter(id=pnode.id)
-                    else:
-                    #### Link to existing node in the dataset.
-                        pnode = q[0]
+                    pnode.save()
+                                
+                    ### Add newly created node to Parent Nodes List
+                    newqset = classification.objects.filter(id=pnode.id)
+                    pnodes = pnodes | newqset
+                else:
+                #### Link to existing node in the dataset.
+                    pnode = q[0]
+                if not i % 50: 
+                    if node.Class != pnode.Class or node.arch != pnode.arch or node.topo != pnode.topo or node.homsf != pnode.homsf :
+                        print >> sys.stdout,'assigning %s to %s' %(node.superfamily(),pnode.superfamily())
+
 
                 #### In all casees, save the newly identified link
                 node.parent_id = pnode.id;
                 node.save()
-                node = pnode;
+                # node = pnode;
 
     #### Old slow algorithms: No Backprop.
     # nodes = classification.objects.all();

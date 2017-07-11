@@ -41,11 +41,11 @@ class level(models.Model):
 class classification(models.Model):	
 	# homsf_ID = models.CharField(max_length=7, primary_key=True)
 
-	Class = models.IntegerField(default=None,null=True)
-	arch = models.IntegerField(default=None,null=True)
-	topo = models.IntegerField(default=None,null=True)
-	homsf = models.IntegerField(default=None,null=True)
-	s35 = models.IntegerField(default=None,null=True)
+	Class = models.IntegerField(default=None,null=True,db_index=True)
+	arch = models.IntegerField(default=None,null=True,db_index=True)
+	topo = models.IntegerField(default=None,null=True,db_index=True)
+	homsf = models.IntegerField(default=None,null=True,db_index=True)
+	s35 = models.IntegerField(default=None,null=True,db_index=True)
 	s60 = models.IntegerField(default=None,null=True)
 	s95 = models.IntegerField(default=None,null=True)
 	s100 = models.IntegerField(default=None,null=True)
@@ -86,7 +86,7 @@ class classification(models.Model):
 
 	# 	return("Superfamily %s"%self.homsf_ID())
 class domain(models.Model):
-	domain_id = models.CharField(max_length=7)
+	domain_id = models.CharField(max_length=7,db_index=True)
 	domain_length = models.IntegerField(default=0,null=True)
 	resolution = models.FloatField(default=0,null=True)
 	nDOPE = models.FloatField(default=0,null=True)

@@ -60,12 +60,33 @@ def domain_collection(request):
 	if dquery:
 		dquery = re.sub('[^A-Za-z0-9\,]+', '', dquery).split(',');
 		domain_list = domain.objects.filter(domain_id__in=dquery)
+		# domain_list = domain_list.order_by('classification__Class','-nDOPE')
+
 	else:
 		# domain_list
 		domain_list = domain.objects.filter(nDOPE__gte=1.5);
+
+		# s35cnt_lst=[]
+		sf_list = CATH_superfamily('v4_1_0')[1]
+
+		s = domain_list.all()
+		for q in s:
+				q.s35cnt = 'not found'
+				q_sf =  q.superfamily();
+				for sf in sf_list:
+					if 	sf['cath_id'] == q_sf:
+						q.s35cnt = sf['child_count_s35_code'];
+						# s35cnt_lst.append(sf['child_count_s35_code']);
+						break
+		# dope_lst = domain_list.values_list('nDOPE');
+		# s = domain_list.all()
+		s = sorted(s, key = lambda x: (-int(x.s35cnt), - x.nDOPE))
+		domain_list = s;
+		# domain_list = domain_list.all().order_by('-s35cnt','-nDOPE',)
+		# domain_list = domain.objects.filter(resolution__lte=1.0);
+
 	# domain_list = 
 
-	domain_list = domain_list.order_by('classification__Class','-nDOPE')
 	# request.GET
 	# tst_a = dquery
 	'tst/domain/?dquery=1gjjA00&dquery=4567Cud'
@@ -79,10 +100,12 @@ def homsf_s35_collection(request, homsf_id):
 								arch=next(lst,None),
 								topo=next(lst,None),
 								homsf=next(lst,None),
-								# s35=next(lst,None),
+								s35=next(lst,0),
+								# s35=None
 								)[0]
 
-	domain_list = homsf.domain_set.all()
+	domain_list = domain.objects.filter(classification__in=homsf.classification_set.all())
+	domain_list = domain_list.order_by('-nDOPE')
 	return view_domain_list(request,domain_list)
     
     # return HttpResponse("You're viewing the s35 representative structures of homology family %s" % homsf_id)
