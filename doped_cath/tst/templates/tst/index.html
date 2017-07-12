@@ -1,8 +1,12 @@
 <head>
 	
+
 {% include "./style.html" %}
 
+{% include "./viewPDB.template" %}
+
 {% load static %}
+
  </head>
 
 
@@ -34,6 +38,7 @@
 
 
 {% include "./config.html" %}
+
 
 <!--     <ul>
         <li><a href="/tst/{{ q.id }}/">
@@ -67,7 +72,10 @@ Displaying {{domain_list|length}} putative superfamily clusters for merging
 			{% for d in domain_list %}
 			<tr>
 				<th><a target="_blank" href="http://www.cathdb.info/version/current/domain/{{d.domain_id}}/">{{d.domain_id}}</a></th>
-				<th><a target="_blank" href="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb"><img src="{% static "imgs/rasmol.png" %}" alt="rasmol_pdb"/></a></th>
+				<th>
+				{# <a target="_blank" href="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb"><img src="{% static "imgs/rasmol.png" %}" alt="rasmol_pdb"/></a></th> #}
+				<a href="#view_{{d.domain_id}}" data-toggle="collapse"><img src="{% static "imgs/rasmol.png" %}" alt="rasmol_pdb"/></a></th>
+
 				{# <th><a href="/tst/domain/{{ d.domain_id }}/">{{d.domain_id}}</a></th> #}
 				<th>
 				<a target="_blank" href="/tst/superfamily/{{d.superfamily}}/">
@@ -79,7 +87,21 @@ Displaying {{domain_list|length}} putative superfamily clusters for merging
 				<th>{{d.raw_DOPE}}</th>
 				{# <th>{{d.classification}}</th> #}
 				<th>{{d.nDOPE}}</th>
-			</tr>		
+			</tr>
+
+			<tr>
+        		<td colspan="10">
+            		{# <div id="view_{{d.domain_id}}" class="collapse" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb"> #}
+            		{# halsdfhlsadf #}
+            		{# sadfjksadlfjl #}
+						{# <div id="container" class="mol-container"></div> #}
+            		{# </div> #}
+					{% include "./PDBcollapse.temp" %}
+
+        		</td>
+		    </tr>
+			{# {% include "./PDBcollapse.temp" %} #}
+		
 			{% endfor %}
 			{# {% for valst in domain_list.values_list %} #}
 	<!--		<tr>
@@ -94,11 +116,13 @@ Displaying {{domain_list|length}} putative superfamily clusters for merging
 	-->
 		</tbody>
 	</table>
-
 {% else %}
     <p>No domain list is provided.</p>
 {% endif %}
 
 
 </div>
+
+
+
 </body>

@@ -1,0 +1,79 @@
+<head>	
+
+{% include "./style.html" %}
+
+{% include "./viewPDB.template" %}
+
+{% load static %}
+
+
+ </head>
+
+
+
+<body>
+
+{# <div id="container-01" class="mol-container"></div> #}
+
+
+
+<p>
+<a href="#view_{{d.domain_id}}" data-toggle="collapse"><img src="/static/imgs/rasmol.png" alt="rasmol_pdb"></a>
+  <button class="btn btn-primary" type="button" target="#collapseExample02" id="01" >
+    Button with data-target
+  </button>
+
+
+</p>
+
+
+<div class="collapse" id="view_{{d.domain_id}}" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb">
+  <div class="card card-block" id="logs">
+  You are viewing {{d.domain_id}}
+	<div id="container" class="mol-container"></div>
+  </div>
+</div>
+
+
+
+
+<p>Another paragraph!!!</p>
+
+<div class="collapse" id="collapseExample02" ct="02" pdb-url="http://www.cathdb.info/version/current/api/rest/id/2c7wA00.pdb">
+  <div class="card card-block" id="logs">
+    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+	<div id="container" class="mol-container"></div>
+
+  </div>
+</div>
+
+<table class="table table-hover">
+<thead>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+
+<tbody>
+    <tr data-toggle="collapse" data-target="#accordion" class="clickable">
+        <td>Some Stuff</td>
+        <td>Some more stuff</td>
+        <td>And some more</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div id="accordion" class="collapse" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb">
+		 <div id="container" class="mol-container"></div>
+
+            Hidden by default</div>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+
+
+</body>
+{# <div id="container-01" class="mol-container"></div> #}
