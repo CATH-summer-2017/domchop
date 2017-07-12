@@ -76,6 +76,7 @@ pdbID	status	reason
 
 #Symbols:		
 	w	waiting for action
+	d	discussed, changes not applied
 	r	resolved
 	c	consulting Christine
 	bp	potential blog post
