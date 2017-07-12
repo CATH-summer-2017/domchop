@@ -66,7 +66,7 @@ pdbID	status	reason
 5bq9B	r	missing a big chunk of structure, however the domains are easy to see (just chop it)
 5byhM	r	really unpacked protein, part of a big multichain complex, strange stuff (cut red in half, add blue helices to green)
 5c6tA	r	not sure if I should include the linkers (remove the linkers)
-5a63A	w	complicated case, hard to separate the domains, single helix is part of other MCD
+5a63A	w	complicated case, hard to separate the domains, single helix is part of other MCD (separate 2 domains at 252, helix cut off)
 5c3lB	w	is this even a domain?
 5c6gA	w	part of a big MCD
 5cvnA	w	not sure if proposed domain 1 needs to be chopped into smaller domains
