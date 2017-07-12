@@ -52,9 +52,9 @@ pdbID	status	reason
 4zphB	w	incorrect rendering, 2 hits to a single template
 4zsxA	bp	Artificial fusion linker produced a partial Cathedral match! Checking literature.
 2n53A	r	Better alternative PDB structure available.
-5c9iA	w	Two manual proposal. Refer to 1C9P.
-5ccB	w	should we COAF insertion? should we include separate fragment?
-		
+5c9iA	r	Two manual proposal. Refer to 1C9P.
+5ccbB	r	should we COAF insertion? should we include separate fragment?
+5c76C	l	check the MCD helixes
 		
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
