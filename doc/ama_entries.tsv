@@ -73,6 +73,7 @@ pdbID	status	reason
 5cwsK	r	this definetly doesnt belong in CATH but very nice to look at (chop off a sheet-helix-sheet as 1 domain)
 3jb6A	c	found a chopping proposed in the article, seems plausible but I am not 100% sure.   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5086257/
 5d06A	c	complicated case, chopping based on paper is a bit strange, more info in the comment, unstructured extension of domain 2 binds the cofactor   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4837477/
+3jb9_	w	huge multi-chain spliceosome with 37 (!) chains, _ stands for W, V, A, a, c for now, maybe more. very complex.
 
 #Symbols:		
 	w	waiting for action
