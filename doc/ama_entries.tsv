@@ -36,9 +36,9 @@ pdbID	status	reason
 5by3A	w	Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
 5ch6B	w	No clue
 5chsA	w	Intereting structure. Literature doesn't help.
-5a8lQ	w	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
+5a8lQ	c	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
 5ax7B	w	Results give 2 domains, I think it should be three. Literature not helping.
-5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low.
+5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low-schop it as one domain
 5cqsD	w	This might be a signle domain but I am not sure
 5cusB	w	Not sure if this should be chopped.
 
