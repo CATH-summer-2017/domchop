@@ -14,6 +14,10 @@ j = job()
 j.append(local_slave())
 j.append(local_slave())
 j.append(local_slave())
+j.append(local_slave())
+j.append(local_slave())
+j.append(local_slave())
+j.append(local_slave())
 
 
 aln = alignment(env)
