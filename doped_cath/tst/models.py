@@ -4,12 +4,30 @@ from __future__ import unicode_literals
 import datetime
 from django.utils import timezone
 from django.db import models
+from django.db.models import Avg,StdDev,Count
+from django.urls import reverse
+from django.templatetags.static import static
+# from django.contrib.staticfiles.templatetags.staticfiles import static
+
 import requests
 # Create your models here.
 
 from CATH_API.lib import *
 
-
+class homsf_manager(models.Manager):
+    def get_queryset(self):
+    	homsf_qset = super(homsf_manager, self).get_queryset().filter(level_id=5);
+    	homsf_qset = (homsf_qset.annotate(nDOPE_std=StdDev("classification__domain__nDOPE"))
+              .annotate(nDOPE_avg=Avg("classification__domain__nDOPE"))
+              .annotate(s35_count=Count("classification__parent__classification"))
+             )
+    	# homsf_qset.manager = "homsf_manager"
+        return homsf_qset
+class domain_manager(models.Manager):
+    def get_queryset(self):
+    	domain_set = super(domain_manager, self).get_queryset();
+    	# domain_set.annotate(superfamily="")
+    	return domain_set
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -52,6 +70,7 @@ class classification(models.Model):
 	version =  models.ForeignKey(version, on_delete= models.CASCADE);
 	level = models.ForeignKey(level,  on_delete=models.CASCADE)
 	parent = models.ForeignKey("self", default=None,null=True, on_delete=models.CASCADE)
+	
 	def node_dict(self):
 		return {
 			'Class':self.Class,
@@ -76,12 +95,25 @@ class classification(models.Model):
 				return s.rstrip('.')
 	def __str__(self):
 		return self.find_depth(self.level.id)
+	
 	def superfamily(self):
 		return self.find_depth(4)
+
+	def superfamily_urled(self):
+		sf = self.superfamily();
+		url = reverse('domain_collection',args=[sf])
+		htmldom = "<a href=\"{:s}\">{:s}</a>".format(url,sf)
+		return htmldom
+	
 	def get_s35cnt(self):
 		url = 'http://www.cathdb.info/version/v4_1_0/api/rest/superfamily/%s' % self.superfamily();
 		cnt = fetch_cath(url)[1]["child_count_s35_code"]
 		return cnt
+
+
+
+	objects = models.Manager()
+	homsf_objects = homsf_manager()
 		# pass
 
 	# 	return("Superfamily %s"%self.homsf_ID())
@@ -95,7 +127,16 @@ class domain(models.Model):
 	classification =  models.ForeignKey(classification, on_delete= models.CASCADE);
 	def superfamily(self):
 		return(self.classification.superfamily())
-
+	def superfamily_urled(self):
+		return(self.classification.superfamily_urled())
+	def view_chopped(self):		
+		elem = '<a href="#view_{:s}" data-toggle="collapse"><img src="{:s}" alt="chopped_pdb"/></a>'.format( self.domain_id, static("imgs/rasmol.png"))
+		return elem
+	def domain_id_urled(self):
+		version = 'current';
+		url = "http://www.cathdb.info/version/{:s}/domain/{:s}/".format(version, self.domain_id)
+		elem = '<a target="_blank" href="{:s}">{:s}</a>'.format(url, self.domain_id)
+		return elem
 	# class_id = models.IntegerField(default=0)
 	# node = models.CharField(default=None)
 	# homsf = models.ManyToManyField(homsf);
