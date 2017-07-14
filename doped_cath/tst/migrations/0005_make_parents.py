@@ -69,7 +69,7 @@ def create_parent(apps, schema_editor):
                     pass
                 else:
                     # q = pnodes.filter(**{plevel:getattr(  pnode,  plevel)});
-                    q = pnodes.filter(**pnode.node_dict());
+                    q = pnodes.filter( **pnode.node_dict() );
 
                 if not q.exists():
                 #### Create this putative node if not in the database                   
