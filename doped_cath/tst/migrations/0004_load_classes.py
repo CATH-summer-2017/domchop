@@ -58,13 +58,13 @@ UPDATE s35
 
 
 SET FOREIGN_KEY_CHECKS=0;
-DELETE from DJANGO_CATH.tst_classification;
+DELETE from tst_classification;
 SET FOREIGN_KEY_CHECKS=1;
 
 UPDATE tst_classification 
   SET temp_id=NULL;
 
-INSERT INTO DJANGO_CATH.tst_classification 
+INSERT INTO tst_classification 
  (Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id,temp_id)
 SELECT 
  Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id,id from s35 ;
@@ -81,7 +81,7 @@ ALTER TABLE temp
  ADD COLUMN version_id INT DEFAULT 1,
  ADD COLUMN level_id INT DEFAULT 5;
 
-INSERT INTO DJANGO_CATH.tst_classification 
+INSERT INTO tst_classification 
  (Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id)
 SELECT DISTINCT
  Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id from temp ;
@@ -106,15 +106,10 @@ SELECT
 # 
 '''
 
-'''
-INSERT INTO DJANGO_CATH.tst_classification (id,Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id)
- select * from CATH.temp_class;
-'''
-
 unload_classes_sql='''
 SET FOREIGN_KEY_CHECKS=0;
-DELETE from DJANGO_CATH.tst_domain;
-DELETE from DJANGO_CATH.tst_classification;
+DELETE from tst_domain;
+DELETE from tst_classification;
 SET FOREIGN_KEY_CHECKS=1;
 DROP TABLE if exists temp_class; 
 # DELETE from tst_version;
