@@ -8,7 +8,6 @@ urlpatterns = [
 
 	# ex: /tst/hello    
     url(r'^$', views.index, name='hello'),
-
     # ex: /tst/5/
     # url(r'^(?P<question_id>[0-9]+)/$', 
     # 	views.detail,
@@ -26,7 +25,7 @@ urlpatterns = [
 
 
     # ex:/tst/
-    url(r'^domain/',
+    url(r'^domain/$',
     	views.domain_collection,
     	name = 'domain_collection'),
 
@@ -36,7 +35,19 @@ urlpatterns = [
     	name = 'domain_detail'),
 
 	# ex:/tst/superfamily/3.90.190.10/
+    # url(r'^superfamily/$',
+    #     views.homsf_s35_collection,
+    #     name = 'homsf_s35_collection'),
+    
+    url(r'^superfamily/$',
+        views.homsf_s35_collection,
+        name = 'homsf_collection'),
 	url(r'^superfamily/(?P<homsf_id>[\d,\.]+)/$',
-		views.homsf_s35_collection,
-		name = 'homsf_s35_collection'),
+        views.homsf_s35_collection,
+        name = 'domain_collection'),
+	# url(r'^superfamily/(?P<homsf_id>[\d,\.]+)/$',
+	# 	views.homsf_s35_collection,
+	# 	name = 'homsf_s35_collection'),
+    url(r'^view3d$', views.view3d, name='hello'),
+
 ]
