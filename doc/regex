@@ -1,0 +1,6 @@
+# Useful regex pattern
+
+"pattern"	"replacement"
+
+#This add a chain "A" label to a PDB that does not contain any chain label. (For example, result from a modeller loopmodel) 
+(\ [A-Z][A-Z][A-Z]\ )\ (\ *[\d])	\1A\2
