@@ -43,7 +43,7 @@ def view3d(request):
 			 'tst/3dviewer.html',
 			  context)
 
-def view_domain_list(request, query_set, orders = None, cols = None):
+def view_domain_list(request, query_set, orders = None, cols = None,title = None ):
 
 	sf_list = CATH_superfamily('v4_1_0')[1]
 
@@ -52,21 +52,22 @@ def view_domain_list(request, query_set, orders = None, cols = None):
 		orders = orders or ['-sf_s35cnt','-nDOPE'];
 		query_set = query_set.order_by(*orders)
 		cols=cols or ['domain_id_urled','superfamily_urled','view_chopped','sf_s35cnt','domain_length','nDOPE'];
-
+		title = title or "domain collection" 
 	if query_set.model == classification:
 		# query_set = query_set.annotate(sf_s35cnt=Count('classification__parent__classification'))	
 		# orders = orders or ['-s35_count','-nDOPE_avg'];
 		query_set = query_set.order_by(*orders)
 		# cols=cols or ['superfamily','s35_count','rep_s35','domain_length','nDOPE'];
 
-		cols=cols or ['superfamily_urled','s35_count','nDOPE_avg','nDOPE_std'];
-
+		cols=cols or ['superfamily_urled','s35_count','s35_len_avg','nDOPE_avg','nDOPE_std'];
+		title = title or "superfamily collection"
 
 	context = {
 		'query_set':query_set,
 		'tst_a':0,	
 		's35cnts':[],
-		'field_names':cols}
+		'field_names':cols,
+		'title':title}
 	return render(request,
 				 # 'tst/index.html',
 				 'tst/view_table.html',
@@ -106,7 +107,7 @@ def homsf_s35_collection(request, homsf_id = None):
 
 		return view_domain_list(request,homsf_list,
 				orders = ['-nDOPE_avg'],
-				cols = ['superfamily_urled','s35_count','nDOPE_avg','nDOPE_std'])
+				cols = ['superfamily_urled','s35_count','s35_len_avg','nDOPE_avg','nDOPE_std'])
 	else:
 		lst = (int(x) for x in homsf_id.split('.'))
 		homsf = classification.objects.filter(Class=next(lst,None),
@@ -121,6 +122,11 @@ def homsf_s35_collection(request, homsf_id = None):
 		domain_list = domain_list.order_by('-nDOPE')
 		# cols = ['domain_id','superfamily_urled','sf_s35cnt','domain_length','nDOPE'];
 		cols = [];
-		return view_domain_list(request,domain_list,cols=cols)
+		return view_domain_list(
+			request,
+			domain_list,
+			cols=cols,
+			title = "s35reps from %s" % (homsf_id) 
+								)
     
     # return HttpResponse("You're viewing the s35 representative structures of homology family %s" % homsf_id)

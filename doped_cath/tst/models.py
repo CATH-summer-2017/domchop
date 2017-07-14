@@ -20,7 +20,8 @@ class homsf_manager(models.Manager):
     	homsf_qset = (homsf_qset.annotate(nDOPE_std=StdDev("classification__domain__nDOPE"))
               .annotate(nDOPE_avg=Avg("classification__domain__nDOPE"))
               .annotate(s35_count=Count("classification__parent__classification"))
-             )
+              .annotate(s35_len_avg=Avg("classification__domain__domain_length"))
+              )
     	# homsf_qset.manager = "homsf_manager"
         return homsf_qset
 class domain_manager(models.Manager):

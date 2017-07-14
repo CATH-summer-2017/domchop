@@ -7,10 +7,27 @@ from datetime import datetime
 from django.db import connection
 
 
+def lookup(node,db_version):
+	lst = (int(x) for x in node.split('.'))
+	c = classification.objects.get(
+		Class=next(lst,0),
+		arch=next(lst,0),
+		topo=next(lst,0),
+		homsf=next(lst,0),
+		s35=next(lst,0),
+		s60=next(lst,0),
+		s95=next(lst,0),
+		s100=next(lst,0),
+		version__name=db_version
+		)
+	return c 
+
 # Create your tests here.
 class EntryModelTest(TestCase):
 
-	def test_superfamily(self):
+	fixtures = ['c410_s35_fixed.json']
+	
+	def sest_superfamily(self):
 		# 1.10.3460.10	
 		node = '1.10.3460.10'
 		lst = (int(x) for x in node.split('.'))
@@ -55,6 +72,18 @@ class EntryModelTest(TestCase):
 				c.execute("select * from tst_classification")
 				row = c.fetchone()
 				print(row)
+
+	def test_relationship(self):
+		# 1.10.3460.10	
+		node = '1.10.10.10'
+		correct_cnt = 407
+		db_version = 'v4_1_0'
+# 
+		sf = lookup('1.10.10.10','v4_1_0')
+
+		real_cnt = len( sf.classification_set.all() )
+		assert real_cnt == correct_cnt, 'Node %s does not the correct number of children nodes (Tested %d, should be %d)' % (	
+			  node, real_cnt, correct_cnt) 
 
 		
 		# print(classification.objects.all())
