@@ -1,7 +1,7 @@
 # Domchop-util
  This repository includes the ongoing efforts in production of useful codes to facilitate the manual curation of domain chopping. Check our [wiki page](https://github.com/CATH-summer-2017/domchop/wiki) if you never heard of **DomChop**.
  
- If you are a Domchop curator. Please find the `ama_entries.log` under `doc/`. Please also document interesting structures into `pdbs/` .
+(UPDATED!!! 2017-07-14) If you are a Domchop curator. Please find the [`amazing_entries`](wiki/amazing_entries) page on `wiki` tab. Please also document interesting structures into `pdbs/` .
 
 
 
