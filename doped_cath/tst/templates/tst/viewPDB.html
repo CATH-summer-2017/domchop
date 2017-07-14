@@ -1,16 +1,30 @@
 <script>
 function viewPDB_3dmol(uri, element){
-// let uri = 'http://www.cathdb.info/version/current/api/rest/id/2c7wA00.pdb';
+// uri = 'http://www.cathdb.info/version/current/api/rest/id/2c7wA00.pdb';
+// uri = 'https://files.rcsb.org/download/1CP9.pdb';
+var colorSS = function(viewer) {
+    //color by secondary structure
+    var m = viewer.getModel();
+    m.setColorByFunction({}, function(atom) {
+      if(atom.ss == 'h') return "magenta";
+      else if(atom.ss == 's') return "orange";
+      else return "white";
+    });
+    viewer.render();
+  }
+
 jQuery.ajax( {type: "GET",url:uri} )
   .done(function(data) {
   	// let element = divid;
   	let config = { backgroundColor: 'white' };
   	let viewer = $3Dmol.createViewer( element, config );
           let m = viewer.addModel( data, "pdb" );
-           viewer.setViewStyle({style:"outline"});
-          viewer.setStyle( {}, {cartoon: {"color":"spectrum",style:"edged"}} );
+          viewer.setViewStyle({style:"outline"});
+          viewer.setStyle( {}, {cartoon: {style:"edged"}} );
+          // viewer.setCross
+          colorSS(viewer)
           viewer.zoomTo();
-          viewer.render();
+          // viewer.render();
           console.dir(data);
   })
   .fail(function(hdr, status, err) {
