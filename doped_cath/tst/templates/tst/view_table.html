@@ -1,0 +1,105 @@
+<head>
+	
+
+{% include "./style.html" %}
+
+{# {% include "./viewPDB.template" %} #}
+{% include "./viewPDB.html" %}
+
+{% load static %}
+
+ </head>
+
+
+<body>
+
+
+<div class="container">
+<section>
+
+<div class="mt-1">
+  <h3 class="display-3">
+   Doped_CATH
+  </h3>
+</div>
+
+<p class="lead">
+	This page is generated from a list of CATH domain ID's, usually suspicious of being badly packed (high nDOPE).
+  Each row represents a single domain from CATH.
+  There is no button you can click, but clicking on shiny bluish text will lead you to domain page or superfamily page.
+</p>
+
+<p>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#config" aria-expanded="true" aria-controls="config">
+  Config
+</button>
+</p>
+
+</section>
+
+
+{% include "./config.html" %}
+
+
+<!--     <ul>
+        <li><a href="/tst/{{ q.id }}/">
+        {{q.id}}||
+        {{q.question_text }}||
+        {{q.pub_date}}||
+        {{q.choice_set.all}}</a></li>
+    </ul> -->
+{{tst_a}}
+
+{% if query_set|length %}
+
+<p class="table-heading">
+Displaying {{query_set|length}} putative superfamily clusters for merging
+</p>
+	{{request}}
+    <table class="table table-sm">
+		<thead>
+
+		{% for f in field_names %}
+			<th>{{f}}</th>
+		{% endfor %}
+
+		</thead>
+		<tbody>
+			
+			{% load getattribute %}
+
+			{% autoescape off %}
+			{% for d in query_set %}
+				<tr>
+					{% for f in field_names %}
+					<th>{{ d | getattribute:f }}</th>
+					{% endfor %}
+				</tr>
+
+				<tr>
+	        		<td colspan="10">
+	            		{# <div id="view_{{d.domain_id}}" class="collapse" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb"> #}
+	            		{# halsdfhlsadf #}
+	            		{# sadfjksadlfjl #}
+							{# <div id="container" class="mol-container"></div> #}
+	            		{# </div> #}
+						{% include "./PDBcollapse.html" %}
+
+	        		</td>
+			    </tr>
+		
+			{% endfor %}
+			{% endautoescape  %}
+
+		</tbody>
+	</table>
+{% else %}
+    <p>No domain list is provided.</p>
+{% endif %}
+
+
+</div>
+
+
+
+</body>

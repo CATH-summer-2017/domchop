@@ -1,0 +1,140 @@
+<script>
+function viewPDB_3dmol(uri, element){
+// let uri = 'http://www.cathdb.info/version/current/api/rest/id/2c7wA00.pdb';
+jQuery.ajax( {type: "GET",url:uri} )
+  .done(function(data) {
+  	// let element = divid;
+  	let config = { backgroundColor: 'white' };
+  	let viewer = $3Dmol.createViewer( element, config );
+          let m = viewer.addModel( data, "pdb" );
+           viewer.setViewStyle({style:"outline"});
+          viewer.setStyle( {}, {cartoon: {"color":"spectrum",style:"edged"}} );
+          viewer.zoomTo();
+          viewer.render();
+          console.dir(data);
+  })
+  .fail(function(hdr, status, err) {
+  	msg = "3DView:Failed to load PDB " + uri + ": " + err;
+  	console.error( msg );
+  	element.text(msg);
+  	viewer.setBackgroundColor('grey');
+  	// console.log(getpdb.getAllResponseHeaders());
+  	console.dir(hdr);// alert(request.getResponseHeader('some_he'));
+  });
+};
+
+
+
+
+
+function viewPDB_pv(uri, element){
+// let uri = 'http://www.cathdb.info/version/current/api/rest/id/2c7wA00.pdb';
+// uri = 'https://files.rcsb.org/download/1CP9.pdb';
+jQuery.ajax( {type: "GET",url:uri} )
+  .done(function(data) {
+    // let element = divid;
+
+
+    // let config = {
+    //       width: 600,
+    //       height: 600,
+    //       antialias: true,
+    //       quality : 'medium'
+    //     };
+    let config = {};
+    // let element=document.getElementById("container")
+
+    var viewer = pv.Viewer(element[0], config);
+
+
+    viewer.on('viewerReady', function() {
+    // add structure here
+    // pv.io.
+    let structure = pv.io.pdb(data)
+      // var ligands = structure.select({ rnames : ['SAH', 'RVP'] });
+      // viewer.ballsAndSticks('ligands', ligands);
+      // preset
+      viewer.clear()
+      // viewer.cartoon('protein', structure, { color : color.ssSuccession() });
+      viewer.cartoon('protein', structure);
+
+      viewer.centerOn(structure);
+      console.log(structure)
+
+      // pv.io.fetchPdb("http://www.cathdb.info/version/current/api/rest/id/3l4gC01.pdb", function(structure) {
+      // // display the protein as cartoon, coloring the secondary structure
+      // // elements in a rainbow gradient.
+      // viewer.cartoon('protein', structure, { color : color.ssSuccession() });
+      // // there are two ligands in the structure, the co-factor S-adenosyl
+      // // homocysteine and the inhibitor ribavirin-5' triphosphate. They have
+      // // the three-letter codes SAH and RVP, respectively. Let's display them
+      // // with balls and sticks.
+      // var ligands = structure.select({ rnames : ['SAH', 'RVP'] });
+      // viewer.ballsAndSticks('ligands', ligands);
+      // viewer.centerOn(structure);
+      // console.log(structure)
+      // });
+    });
+  })
+  .fail(function(hdr, status, err) {
+    msg = "3DView:Failed to load PDB " + uri + ": " + err;
+    console.error( msg );
+    element.text(msg);
+    viewer.setBackgroundColor('grey');
+    // console.log(getpdb.getAllResponseHeaders());
+    console.dir(hdr);// alert(request.getResponseHeader('some_he'));
+  });
+};
+
+
+
+
+
+
+function loadMethylTransferase() {
+  // asynchronously load the PDB file for the dengue methyl transferase
+  // from the server and display it in the viewer.
+  pv.io.fetchPdb('1r6a.pdb', function(structure) {
+      // display the protein as cartoon, coloring the secondary structure
+      // elements in a rainbow gradient.
+      viewer.cartoon('protein', structure, { color : color.ssSuccession() });
+      // there are two ligands in the structure, the co-factor S-adenosyl
+      // homocysteine and the inhibitor ribavirin-5' triphosphate. They have
+      // the three-letter codes SAH and RVP, respectively. Let's display them
+      // with balls and sticks.
+      var ligands = structure.select({ rnames : ['SAH', 'RVP'] });
+      viewer.ballsAndSticks('ligands', ligands);
+      viewer.centerOn(structure);
+  });
+}
+
+
+
+$(document).ready(function(){	
+    $(".btn-primary").click(function(){
+    	// var id =c
+
+    	$($(this).attr("target")).collapse("toggle");
+	    // viewPDB( $(".btn-primary").attr("pdb-url") );
+		});
+
+    $('.collapse').on('shown.bs.collapse', function () {
+		// console.error('function here');
+		var uri = $(this).attr("pdb-url");
+		var divid = $(this).find("#container");
+
+		viewPDB_3dmol( uri , divid);
+    // viewPDB_pv( uri , divid);
+
+	});    
+});
+
+
+</script>
+
+<style> .mol-container {
+  width: 60%;
+  height: 400px;
+  position: relative;}
+
+</style>
