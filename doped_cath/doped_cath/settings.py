@@ -26,6 +26,7 @@ SECRET_KEY = '#*mtl@gpm+fw=50^%-5wqw*^j#wce#nkx+mir13d&zygj*=l(5'
 DEBUG = True
 
 ALLOWED_HOSTS = [u'testserver',
+'localhost:8000',
 'localhost',
 '127.0.0.1',
     ]
@@ -34,8 +35,10 @@ ALLOWED_HOSTS = [u'testserver',
 # Application definition
 
 INSTALLED_APPS = [
+    # 'corsheaders',
     'tst.apps.Config',
     'rest_framework',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,9 +47,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# MIDDLEWARE_CLASSES = (
+# )
 MIDDLEWARE = [
+    ### CORS may be a potential problem for ajax request
+    # 'tst.middleware.corsMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -133,10 +145,14 @@ STATIC_URL = '/static/'
 
 
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
+MIGRATION_MODULES = {"tst": None}
+
+TEMPLATE_STRING_IF_INVALID = 'No attr:'
