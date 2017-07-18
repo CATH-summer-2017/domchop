@@ -10,14 +10,16 @@ env.io.atom_files_directory = ['.', '../atom_files']
 # Create a new class based on 'loopmodel' so that we can redefine
 # select_loop_atoms
 
+num_cores=2;
 j = job()
-j.append(local_slave())
-j.append(local_slave())
-j.append(local_slave())
-j.append(local_slave())
-j.append(local_slave())
-j.append(local_slave())
-j.append(local_slave())
+for i in range(num_cores):
+	j.append(local_slave())
+# j.append(local_slave())
+# j.append(local_slave())
+# j.append(local_slave())
+# j.append(local_slave())
+# j.append(local_slave())
+# j.append(local_slave())
 
 
 aln = alignment(env)
@@ -25,7 +27,8 @@ mdl = model(env)
 env = environ()
 
 
-code = "1favA00_mod1.pdb"
+# code = "1favA00_mod1.pdb"
+code = "4aimA04.pdb"
 mdl.read(file=code,model_segment=('FIRST:@','END:'))
 aln.append_model(mdl,align_codes=code,atom_files=code)
 
@@ -52,7 +55,7 @@ a.starting_model= 1                 # index of the first model
 a.ending_model  = 1                 # index of the last model
 
 a.loop.starting_model = 1           # First loop model
-a.loop.ending_model   = 10           # Last loop model
+a.loop.ending_model   = num_cores           # Last loop model
 a.use_parallel_job(j) 
 
 
