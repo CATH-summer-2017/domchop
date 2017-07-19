@@ -39,7 +39,7 @@ pdbID	status	reason
 5a8lQ	w	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
 5ax7B	w	Results give 2 domains, I think it should be three. Literature not helping.
 5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low.
-5cqsD	c	This might be a signle domain but I am not sure
+5cqsD	c	This might be a single domain but I am not sure
 5cusB	w	Not sure if this should be chopped.
 
 		
@@ -77,6 +77,8 @@ pdbID	status	reason
 5axwA	w	chopping is based purely on my common sense, because algorithms didnt provide good choppings and article is not available. more info in the comment.
 5dcaA	w	very big chain, results from CATHEDRAL and CC are not bad, however they contradict the article. at the same time domains from the article are too big and unpacked. more info in comments https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4699386/
 5d98A	w	no good chopping by algorithms, some structures may be parts of bigger MCD, chopping based on common sense
+5aorA	w	based on paper, big chunks of structure missing, proposed domain added to 2 other domains due to being unpacked. not sure about tongues on domains 3 and 1. https://www.ncbi.nlm.nih.gov/pubmed/?term=26545078
+5dqrA	w	very tempting to treat it as a WCD
 
 #Symbols:		
 	w	waiting for action
