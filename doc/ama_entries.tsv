@@ -76,7 +76,7 @@ pdbID	status	reason
 3jb9_	w	huge multi-chain spliceosome with 37 (!) chains, _ stands for W, V, A, a, c for now, maybe more. very complex.
 5axwA	w	chopping is based purely on my common sense, because algorithms didnt provide good choppings and article is not available. more info in the comment.
 5dcaA	w	very big chain, results from CATHEDRAL and CC are not bad, however they contradict the article. at the same time domains from the article are too big and unpacked. more info in comments https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4699386/
-
+5d98A	w	no good chopping by algorithms, some structures may be parts of bigger MCD, chopping based on common sense
 
 #Symbols:		
 	w	waiting for action
