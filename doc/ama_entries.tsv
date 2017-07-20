@@ -80,6 +80,7 @@ pdbID	status	reason
 5aorA	w	based on paper, big chunks of structure missing, proposed domain added to 2 other domains due to being unpacked. not sure about tongues on domains 3 and 1. https://www.ncbi.nlm.nih.gov/pubmed/?term=26545078
 5dqrA	w	very tempting to treat it as a WCD
 5du3A	w	again, very tempting to treat as a WCD but for some reasonb it has really high SSAP scores with some bad choppings
+5dvyA	w	domain boundary on the secondary structure, not sure
 
 #Symbols:		
 	w	waiting for action
