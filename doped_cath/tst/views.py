@@ -103,10 +103,11 @@ def homsf_s35_collection(request, homsf_id = None):
 		### filter for the superfamily/ index page
 		# homsf_list = (classification.homsf_objects.filter(nDOPE_avg__gte=1.0 ) | 
 		# 	classification.homsf_objects.filter(nDOPE_std__gte = 0.1 ))
-		homsf_list = classification.homsf_objects.filter(s35_count__gte=1000)
+		homsf_list = classification.homsf_objects.filter(s35_count__gte=100)
+		# homsf_list = classification.homsf_objects.filter(s35_count__lte=100).filter(s35_count__gte=10)
 
 		return view_domain_list(request,homsf_list,
-				orders = ['-nDOPE_avg'],
+				orders = ['-nDOPE_std'],
 				cols = ['superfamily_urled','s35_count','s35_len_avg','nDOPE_avg','nDOPE_std'])
 	else:
 		lst = (int(x) for x in homsf_id.split('.'))
