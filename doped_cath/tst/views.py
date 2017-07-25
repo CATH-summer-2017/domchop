@@ -18,6 +18,10 @@ import urllib
 import re
 import random
 
+
+import json
+from .utils import scatterplot_json
+
 def index(request):
 
 	output = 'index is now empty'
@@ -28,9 +32,6 @@ def index(request):
 	# return HttpResponse("Hello, world. You're at the polls index.")
 	# return HttpResponse( '<!DOCTYPE HTML><html>' + ' The output is: <br/>'+ output+'</html>')
 
-
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
 ####
 def domain_detail(request, domain_id):
     return HttpResponse("You're viewing detail page on CATH domian %s." % domain_id)
@@ -42,6 +43,11 @@ def view3d(request):
 	return render(request,
 			 'tst/3dviewer.html',
 			  context)
+
+
+
+
+#### Common function to render a table view
 
 def view_domain_list(request, query_set, orders = None, cols = None,title = None ):
 
@@ -73,6 +79,11 @@ def view_domain_list(request, query_set, orders = None, cols = None,title = None
 				 'tst/view_table.html',
 				  context)
 
+
+
+
+### Visualise a collection of domain_id's
+
 def domain_collection(request):
 	# latest_question_list = Question.objects.order_by('-pub_date')[:5]
 	dquery = request.GET.get('dquery', [])
@@ -97,6 +108,11 @@ def domain_collection(request):
 
 	return view_domain_list(request,domain_list,orders)
 
+
+# url = reverse('fig_nbscatter',args=[homsf_id])
+		
+
+#### Visualise a collection of superfamilies
 
 def homsf_s35_collection(request, homsf_id = None):
 	if not homsf_id:
@@ -130,4 +146,19 @@ def homsf_s35_collection(request, homsf_id = None):
 			title = "s35reps from %s" % (homsf_id) 
 								)
     
+
+
+def scatterplot_qset(request,homsf_id='1.10.30.10'):
+	jdict, errmsg = scatterplot_json(homsf_id)
+	jstr = json.dumps(jdict).replace('\\n','');
+	context = {
+	'query_set': [],
+	'title': 'superfamily %s'%homsf_id,
+	'fig_json1': jstr,
+	}
+	# print(jstr) ## just for debugging the JSON issue
+	return render(request,
+			 'tst/nbscatter_template.html',
+			  context)
+
     # return HttpResponse("You're viewing the s35 representative structures of homology family %s" % homsf_id)

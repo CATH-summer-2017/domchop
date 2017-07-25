@@ -49,5 +49,8 @@ urlpatterns = [
 	# 	views.homsf_s35_collection,
 	# 	name = 'homsf_s35_collection'),
     url(r'^view3d$', views.view3d, name='hello'),
+    url(r'^scplot$', views.homsf_s35_collection, {'homsf_id':'1.10.30.10'},name= 'test'),
+
+    url(r'^figure/superfamily/(?P<homsf_id>[\d,\.]+)/$', views.scatterplot_qset,name='fig_nbscatter'),
 
 ]
