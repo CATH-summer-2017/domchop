@@ -7,6 +7,31 @@
 {% include "./viewPDB.html" %}
 
 {% load static %}
+<script type="text/javascript">
+  function highlight(j_alias){
+  $(j_alias).addClass('bg-info').siblings().removeClass('bg-info');
+  // $('body').
+  $(j_alias).get(0).scrollIntoView();
+  // scrollTo(j_alias)
+  // $(j_alias).get(0).click();
+}
+$( document ).ready(function() {
+$('.clickable-row').click(function() {
+    // $(this).addClass('highlight').siblings().removeClass('highlight');
+    // $(this).addClass('active').siblings().removeClass('active');
+
+    // $(this).addClass('bg-info').siblings().removeClass('bg-info');
+    highlight(this);
+
+    // $(this).find("#view3d").attr("href").eval();
+    // $(this).find("#view3d").trigger()
+    var elem = $(this).find("#view3d");
+    elem = elem.get(0);
+    elem.click();
+    console.dir(elem);
+    });
+});
+</script>
 
  </head>
 
@@ -43,10 +68,15 @@
 
 
 {% if query_set|length %}
+{% url 'fig_nbscatter' query_set.0.superfamily as fig_url %}
 
 <p class="table-heading">
-Displaying {{query_set|length}} putative superfamily clusters for merging
+URL:{{fig_url}}  Displaying {{query_set|length}} putative superfamily clusters for merging
 </p>
+  <button class="btn btn-primary" type="button" id="view_plot" onclick="plot_window();">
+   View Plot in panel
+  </button>
+
 	{{request}}
     <table class="table table-sm">
 		<thead>
@@ -62,7 +92,7 @@ Displaying {{query_set|length}} putative superfamily clusters for merging
 
 			{% autoescape off %}
 			{% for d in query_set %}
-				<tr>
+				<tr id="dbid_{{d.id}}" class="clickable-row">
 					{% for f in field_names %}
 					<th>{{ d | getattribute:f }}</th>
 					{% endfor %}
@@ -89,8 +119,74 @@ Displaying {{query_set|length}} putative superfamily clusters for merging
     <p>No domain list is provided.</p>
 {% endif %}
 
+<iframe id="encoder_iframe" height="75%" width="50%" src="{%static 'mpld3_test.html'%}"/></iframe>
+
 
 </div>
+
+
+
+<script type="text/javascript">
+function plot_window(){
+
+        // "use strict";
+        var mypanel=$.jsPanel({
+            position: {
+                my: "right-top",
+                at: "right-top",
+                offsetY: 52
+            },
+
+            css:   {'width': '420', 'height':'600'},
+            // size: 'auto',
+
+            headerTitle: "ScatterPlot",
+            // content: "<p>A plot containing information about outlier</p>"+`<iframe id="encoder_iframe" height="100%" width="100%" src="{%static 'mpld3_test.html'%}"/></iframe>`,
+            content:'<p>A plot containing information about outlier</p>',
+
+        });
+        mypanel.resize("500px","600px")
+        // mypanel.css({'width':'500', 'height':'600'})
+        // jsPanel.resizeContent(mypanel);
+            // mypanel.content.append("<a href='#row1' onclick='$(`#row10`).click();' data-toggle='table'>row1</a>")
+            // mypanel.size='auto';
+            // mypanel.content.append(`<iframe id="encoder_iframe" height="100%" width="100%" src="{%static 'mpld3_test.html'%}"/></iframe>`)
+            mypanel.content.append(`<iframe id="encoder_iframe" height="100%" width="100%" src="{{fig_url}}"/></iframe>`)
+
+
+    };
+
+</script>
+
+{# </iframe> #}
+
+
+
+<script type="text/javascript">
+
+
+// $( document ).ready(function() {
+//    $('.clickable-row').click(function() {
+//     // $(this).addClass('highlight').siblings().removeClass('highlight');
+//     // $(this).addClass('active').siblings().removeClass('active');
+
+//     // $(this).addClass('bg-info').siblings().removeClass('bg-info');
+//     highlight(this);
+
+//     // $(this).find("#view3d").attr("href").eval();
+//     // $(this).find("#view3d").trigger()
+//     var elem = $(this).find("#view3d");
+//     elem = elem.get(0);
+//     elem.click();
+//     console.dir(elem);
+//     // elem.click(function(){return true;}).click();
+//     // elem.click()
+
+
+//   // row was clicked
+//     });
+// });
+</script>
 
 
 

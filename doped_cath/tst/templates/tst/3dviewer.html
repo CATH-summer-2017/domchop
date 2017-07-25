@@ -2,7 +2,6 @@
 
 {% include "./style.html" %}
 
-{% include "./viewPDB.template" %}
 
 {% load static %}
 
@@ -47,7 +46,7 @@
   </div>
 </div>
 
-<table class="table table-hover">
+<table class="table table-bordered " id="myTable">
 <thead>
   <tr>
     <th></th>
@@ -57,23 +56,53 @@
 </thead>
 
 <tbody>
-    <tr data-toggle="collapse" data-target="#accordion" class="clickable">
+    <tr data-toggle="collapse" data-target="#accordion" class="clickable-row">
         <td>Some Stuff</td>
         <td>Some more stuff</td>
         <td>And some more</td>
     </tr>
-    <tr>
-        <td colspan="3">
-            <div id="accordion" class="collapse" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb">
-		 <div id="container" class="mol-container"></div>
 
-            Hidden by default</div>
+
+    {% with ''|center:100 as range %}
+      {% for _ in range %}
+        
+        <tr class="clickable-row" id="row{{forloop.counter}}">
+        <td colspan="3">
+            {{ forloop.counter }}
+            {# <div id="accordion" class="collapse" pdb-url="http://www.cathdb.info/version/current/api/rest/id/{{d.domain_id}}.pdb">     </div> #}
         </td>
+        <td></td>
     </tr>
+      {% endfor %}
+    {% endwith %}
 </tbody>
 </table>
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel.min.js"></script> #}
+<script type="text/javascript">
+    $('#01').click(function () {
+        "use strict";
+        var mypanel=$.jsPanel({
+            position: {
+                my: "left-top",
+                at: "left-top",
+                offsetY: 52
+            },
+            headerTitle: "ScatterPlot",
+            content: "<p>A plot containing information about outlier</p>",
 
+        });
+            mypanel.content.append("<a href='#row1' onclick='$(`#row10`).click();' data-toggle='table'>row1</a>")
 
+    });
+
+$( document ).ready(function() {
+
+   $('.table > tbody > tr').click(function() {
+    $(this).addClass('bg-info').siblings().removeClass('bg-info');
+  // row was clicked
+    });
+});
+</script>
 
 </body>
 {# <div id="container-01" class="mol-container"></div> #}
