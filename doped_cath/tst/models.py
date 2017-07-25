@@ -19,11 +19,14 @@ class homsf_manager(models.Manager):
     	homsf_qset = super(homsf_manager, self).get_queryset().filter(level_id=5);
     	homsf_qset = (homsf_qset.annotate(nDOPE_std=StdDev("classification__domain__nDOPE"))
               .annotate(nDOPE_avg=Avg("classification__domain__nDOPE"))
-              .annotate(s35_count=Count("classification__parent__classification"))
+              .annotate(s35_count=Count("classification"))
               .annotate(s35_len_avg=Avg("classification__domain__domain_length"))
+              # .annotate(superfamily="superfamily")
               )
-    	# homsf_qset.manager = "homsf_manager"
         return homsf_qset
+
+    # def get_superfamily(self):
+    # 	homsf_qset.manager = "homsf_manager"
 class domain_manager(models.Manager):
     def get_queryset(self):
     	domain_set = super(domain_manager, self).get_queryset();
@@ -131,7 +134,7 @@ class domain(models.Model):
 	def superfamily_urled(self):
 		return(self.classification.superfamily_urled())
 	def view_chopped(self):		
-		elem = '<a href="#view_{:s}" data-toggle="collapse"><img src="{:s}" alt="chopped_pdb"/></a>'.format( self.domain_id, static("imgs/rasmol.png"))
+		elem = '<a id="view3d" href="#view_{:s}" data-toggle="collapse"><img src="{:s}" alt="chopped_pdb"/></a>'.format( self.domain_id, static("imgs/rasmol.png"))
 		return elem
 	def domain_id_urled(self):
 		version = 'current';
