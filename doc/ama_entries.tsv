@@ -39,8 +39,10 @@ pdbID	status	reason
 5a8lQ	w	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
 5ax7B	w	Results give 2 domains, I think it should be three. Literature not helping.
 5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low.
-5cqsD	c	This might be a signle domain but I am not sure
+5cqsD	c	This might be a single domain but I am not sure
 5cusB	w	Not sure if this should be chopped.
+5cslB	w	
+4zxdW	w	Not sure about the tongue in Domain 2.
 
 		
 		
@@ -55,6 +57,9 @@ pdbID	status	reason
 5c9iA	r	Two manual proposal. Refer to 1C9P.
 5ccbB	r	should we COAF insertion? should we include separate fragment?
 5c76C	l	check the MCD helixes
+5dgkB	c	
+5awhA	c	
+2n73B	w	need to correct my python script.
 		
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
@@ -73,10 +78,14 @@ pdbID	status	reason
 5cwsK	r	this definetly doesnt belong in CATH but very nice to look at (chop off a sheet-helix-sheet as 1 domain)
 3jb6A	c	found a chopping proposed in the article, seems plausible but I am not 100% sure.   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5086257/
 5d06A	c	complicated case, chopping based on paper is a bit strange, more info in the comment, unstructured extension of domain 2 binds the cofactor   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4837477/
-3jb9_	w	huge multi-chain spliceosome with 37 (!) chains, _ stands for W, V, A, a, c for now, maybe more. very complex.
-5axwA	w	chopping is based purely on my common sense, because algorithms didnt provide good choppings and article is not available. more info in the comment.
-5dcaA	w	very big chain, results from CATHEDRAL and CC are not bad, however they contradict the article. at the same time domains from the article are too big and unpacked. more info in comments https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4699386/
-
+3jb9_	d	huge multi-chain spliceosome with 37 (!) chains, _ stands for X, Y, W, V, A, a, c for now, maybe more. very complex. (just chop it man)
+5axwA	d	chopping is based purely on my common sense, because algorithms didnt provide good choppings and article is not available. more info in the comment. (find the article)
+5dcaA	r	very big chain, results from CATHEDRAL and CC are not bad, however they contradict the article. at the same time domains from the article are too big and unpacked. more info in comments https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4699386/
+5d98A	r	no good chopping by algorithms, some structures may be parts of bigger MCD, chopping based on common sense
+5aorA	r	based on paper, big chunks of structure missing, proposed domain added to 2 other domains due to being unpacked. not sure about tongues on domains 3 and 1. https://www.ncbi.nlm.nih.gov/pubmed/?term=26545078
+5dqrA	d	very tempting to treat it as a WCD (it is a WCD)
+5du3A	r	again, very tempting to treat as a WCD but for some reason, it has really high SSAP scores with some bad choppings
+5dvyA	d	domain boundary on the secondary structure, not sure (domains 2 and extend to to the yellow, end of 2 beta strands)
 
 #Symbols:		
 	w	waiting for action
