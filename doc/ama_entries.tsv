@@ -41,7 +41,7 @@ pdbID	status	reason
 5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low.
 5cqsD	c	This might be a single domain but I am not sure
 5cusB	w	Not sure if this should be chopped.
-5cslB	w  
+5cslB	w	
 4zxdW	w	Not sure about the tongue in Domain 2.
 
 		
@@ -57,6 +57,9 @@ pdbID	status	reason
 5c9iA	r	Two manual proposal. Refer to 1C9P.
 5ccbB	r	should we COAF insertion? should we include separate fragment?
 5c76C	l	check the MCD helixes
+5dgkB	c	
+5awhA	c	
+2n73B	w	need to correct my python script.
 		
 4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
 4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
