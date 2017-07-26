@@ -86,7 +86,8 @@ pdbID	status	reason
 5dqrA	d	very tempting to treat it as a WCD (it is a WCD)
 5du3A	r	again, very tempting to treat as a WCD but for some reason, it has really high SSAP scores with some bad choppings
 5dvyA	d	domain boundary on the secondary structure, not sure (domains 2 and extend to to the yellow, end of 2 beta strands)
-5dseA	w	suoerhelix, probably needs to be considered as a WCD
+5dseA	w	superhelix, probably needs to be considered as a WCD
+5edvA	w	accroding to the paper linker region is a domain, however it is part of the complex  and quite unpacked.
 
 #Symbols:		
 	w	waiting for action
