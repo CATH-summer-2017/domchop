@@ -3,3 +3,5 @@ query_chain id	match chain id (CC)	match dom id (CATHEDRAL)	comments
 5e4vA	4co6B	4co6A01/na	Inherited incorrect WCD from 4co6B, inconsistent with pubmed:25108352
 5b0oD	2dpyB	2dpyA/na	for some reasons the incorrect chain is not in CATH anymore, says holding pen (2dpyA is a match for CATH and doesn't exist)
 na	9nseA	NA	this is a bad chopping, lots of fragments and secondary structure chopped in half, found by accident
+NA	4e8dA	NA	doped_cath outlier
+NA	3gw6D	NA	doped_cath outlier
