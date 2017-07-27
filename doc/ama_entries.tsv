@@ -90,7 +90,7 @@ pdbID	status	reason
 5edvA	w	accroding to the paper linker region is a domain, however it is part of the complex  and quite unpacked.
 3jb9X	w	chopping is based on common sense, maybe the remainder of barell needs to be a domain
 3jb9A	w	part of the spliceosme, hard to find where domain 2 can be chopped
-
+5es2A	w	unknown function, chopped up for parallel helices loosely based on Puu
 
 #Symbols:		
 	w	waiting for action
