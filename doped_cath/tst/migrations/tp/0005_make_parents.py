@@ -69,7 +69,7 @@ def create_parent(apps, schema_editor):
                     pass
                 else:
                     # q = pnodes.filter(**{plevel:getattr(  pnode,  plevel)});
-                    q = pnodes.filter(**pnode.node_dict());
+                    q = pnodes.filter( **pnode.node_dict() );
 
                 if not q.exists():
                 #### Create this putative node if not in the database                   
@@ -88,11 +88,12 @@ def create_parent(apps, schema_editor):
                 else:
                 #### Link to existing node in the dataset.
                     pnode = q[0]
+                if not i % 50: 
+                    if node.Class != pnode.Class or node.arch != pnode.arch or node.topo != pnode.topo or node.homsf != pnode.homsf :
+                        print >> sys.stdout,'assigning %s to %s' %(node.superfamily(),pnode.superfamily())
 
-                if node.Class != pnode.Class or node.arch != pnode.arch or node.topo != pnode.topo or node.homsf != pnode.homsf :
-                    print >> sys.stdout,'assigning %s to %s' %(node.superfamily(),pnode.superfamily())
+
                 #### In all casees, save the newly identified link
-
                 node.parent_id = pnode.id;
                 node.save()
                 # node = pnode;

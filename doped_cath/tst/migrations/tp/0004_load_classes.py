@@ -29,6 +29,12 @@ CREATE table s35(
    domain_length int,
    resolution float);
 
+#### For a regularly delimited file.
+#LOAD DATA LOCAL INFILE '/home/shouldsee/Documents/repos/cathdb/cath-domain-list-S35.txt'
+## LOAD DATA LOCAL INFILE '/home/shouldsee/Documents/repos/cathdb/domchop/doc/cath-b-s35-newest.clfd'
+#INTO TABLE s35 
+#FIELDS TERMINATED by '     ' lines terminated by '\n';
+
 #### If however you got fixed-width CATH CLF.
 LOAD DATA LOCAL INFILE '/home/shouldsee/Documents/repos/cathdb/cath-domain-list-S35-v4_1_0.txt' 
 INTO TABLE s35
@@ -51,17 +57,42 @@ ALTER TABLE s35
   ADD COLUMN version_id int default 1,
   ADD COLUMN level_id int default 6;
 
+UPDATE s35
+  SET s60=0,
+    s95=0,
+    s100=0;
+
+
 SET FOREIGN_KEY_CHECKS=0;
-DELETE from DJANGO_CATH.tst_classification;
+DELETE from tst_classification;
 SET FOREIGN_KEY_CHECKS=1;
 
 UPDATE tst_classification 
   SET temp_id=NULL;
 
-INSERT INTO DJANGO_CATH.tst_classification 
+INSERT INTO tst_classification 
  (Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id,temp_id)
 SELECT 
  Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id,id from s35 ;
+
+DROP TABLE IF EXISTS temp;
+CREATE TABLE temp SELECT DISTINCT
+ Class,arch,topo,homsf from s35 ;
+
+ALTER TABLE temp
+ ADD COLUMN s35 INT DEFAULT 0,
+ ADD COLUMN s60 INT DEFAULT 0,
+ ADD COLUMN s95 INT DEFAULT 0,
+ ADD COLUMN s100 INT DEFAULT 0,
+ ADD COLUMN version_id INT DEFAULT 1,
+ ADD COLUMN level_id INT DEFAULT 5;
+
+INSERT INTO tst_classification 
+ (Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id)
+SELECT DISTINCT
+ Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id from temp ;
+
+DROP TABLE temp;
 
 ALTER TABLE s35
   ADD COLUMN classification_id INT;
@@ -81,15 +112,10 @@ SELECT
 # 
 '''
 
-'''
-INSERT INTO DJANGO_CATH.tst_classification (id,Class,arch,topo,homsf,s35,s60,s95,s100,version_id,level_id)
- select * from CATH.temp_class;
-'''
-
 unload_classes_sql='''
 SET FOREIGN_KEY_CHECKS=0;
-DELETE from DJANGO_CATH.tst_domain;
-DELETE from DJANGO_CATH.tst_classification;
+DELETE from tst_domain;
+DELETE from tst_classification;
 SET FOREIGN_KEY_CHECKS=1;
 DROP TABLE if exists temp_class; 
 # DELETE from tst_version;

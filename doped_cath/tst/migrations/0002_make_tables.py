@@ -38,6 +38,7 @@ class Migration(migrations.Migration):
                 ('raw_DOPE', models.FloatField(default=0, null=True)),
             ],
         ),
+
         migrations.CreateModel(
             name='level',
             fields=[
@@ -65,6 +66,12 @@ class Migration(migrations.Migration):
             name='classification',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tst.classification'),
         ),
+        ### Manually altered the field to OneToOne
+        migrations.AlterField(
+            model_name='domain',
+            name='classification',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='tst.classification'),
+        ),
         migrations.AddField(
             model_name='classification',
             name='level',
@@ -80,4 +87,34 @@ class Migration(migrations.Migration):
             name='version',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tst.version'),
         ),
+
+        migrations.CreateModel(
+            name='domain_stat',
+            fields=[
+                ('domain', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='tst.domain')),
+                ('DOPE', models.FloatField(null=True)),
+                ('nDOPE', models.FloatField(null=True)),
+                ('nbpair_count', models.IntegerField(null=True)),
+                ('atom_count', models.IntegerField(null=True)),
+                ('res_count', models.IntegerField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='node_stat',
+            fields=[
+                ('node', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='tst.classification')),
+            ],
+        ),
+        
+        migrations.AddField(
+            model_name='node_stat',
+            name='Rsq_NBcount_Acount',
+            field=models.FloatField(null=True),
+        ),
+        migrations.AddField(
+            model_name='node_stat',
+            name='Rsq_NBcount_Rcount',
+            field=models.FloatField(null=True),
+        ),
+
     ]
