@@ -5,3 +5,4 @@ query_chain id	match chain id (CC)	match dom id (CATHEDRAL)	comments
 na	9nseA	NA	this is a bad chopping, lots of fragments and secondary structure chopped in half, found by accident
 NA	4e8dA	NA	doped_cath outlier
 NA	3gw6D	NA	doped_cath outlier
+5fmoL	1ny72	NA	doped_cath outlier, inherited from CathDomall, 2 consecutive domains incorrectly merged
