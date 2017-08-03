@@ -87,13 +87,13 @@ pdbID	status	reason
 5dqrA	r	very tempting to treat it as a WCD (it is a WCD)
 5du3A	r	again, very tempting to treat as a WCD but for some reason, it has really high SSAP scores with some bad choppings
 5dvyA	r	domain boundary on the secondary structure, not sure (domains 2 and extend to to the yellow, end of 2 beta strands)
-5dseA	w	superhelix, probably needs to be considered as a WCD
-5edvA	w	according to the paper linker region is a domain, however it is part of the complex  and quite unpacked.
-3jb9X	w	chopping is based on common sense, maybe the remainder of barell needs to be a domain
-3jb9A	w	part of the spliceosme, hard to find where domain 2 can be chopped
-5es2A	w	unknown function, chopped up for parallel helices loosely based on Puu
+5dseA	d	superhelix, probably needs to be considered as a WCD
+5edvA	d	according to the paper linker region is a domain, however it is part of the complex  and quite unpacked.
+3jb9X	d	chopping is based on common sense, maybe the remainder of barell needs to be a domain
+3jb9A	d	part of the spliceosme, hard to find where domain 2 can be chopped
+5es2A	d	unknown function, chopped up for parallel helices loosely based on Puu
 5f0nA	w	many alpha helices, not sure about the chopping in general
-
+5b16A	w	a lot of structure missing, needs a lot of trimming
 
 #Symbols:		
 	w	waiting for action
