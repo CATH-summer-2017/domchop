@@ -93,7 +93,7 @@ pdbID	status	reason
 3jb9X	d	chopping is based on common sense, maybe the remainder of barell needs to be a domain
 3jb9A	d	part of the spliceosme, hard to find where domain 2 can be chopped
 5es2A	d	unknown function, chopped up for parallel helices loosely based on Puu
-5f0nA	w	many alpha helices, not sure about the chopping in general
+5f0nA	c	many alpha helices, not sure about the chopping in general (WCD, based on ECOD and other cases (5f0o)
 5b16A	w	a lot of structure missing, needs a lot of trimming
 
 #Symbols:		
