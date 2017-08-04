@@ -17,6 +17,8 @@ git checkout nDOPE
 
 
 # Pre-requisite and configuration
+**for Doped_CATH** 
+-----
 You should have **modeller** installed and configured as a pre-requisite. 
 
 You should have modeller/bin on your $PATH variable. To set this temporarily, run 
