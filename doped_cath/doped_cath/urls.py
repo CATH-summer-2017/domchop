@@ -20,5 +20,7 @@ urlpatterns = [
 #    url(r'^tst\/', include('tst.urls')),
     url(r'^tst/', include('tst.urls')),
     url(r'^admin/', admin.site.urls),
+    # url('^markdown/', include( 'django_markdown.urls')),
+
     
 ]

@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-start develttopment settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -24,7 +24,6 @@ SECRET_KEY = '#*mtl@gpm+fw=50^%-5wqw*^j#wce#nkx+mir13d&zygj*=l(5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = [u'testserver',
 'localhost:8000',
 'localhost',
@@ -36,6 +35,7 @@ ALLOWED_HOSTS = [u'testserver',
 
 INSTALLED_APPS = [
     # 'corsheaders',
+    # 'django_markdown',
     'tst.apps.Config',
     'rest_framework',
     'django_extensions',
@@ -153,6 +153,6 @@ STATIC_URL = '/static/'
 #     ]
 # }
 
-MIGRATION_MODULES = {"tst": None}
+# MIGRATION_MODULES = {"tst": None}
 
 TEMPLATE_STRING_IF_INVALID = 'No attr:'

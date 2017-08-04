@@ -1,6 +1,20 @@
 <div class="collapse" id="config" aria-expanded="true">
 
+  <table class="table table-sm table-bordered">
+{% load util_filter %}
+
+  {% for f in field_names %}
+  <tr></tr>
+    <th>{{f}}:</th>
+    <th>{{field_readable|getattribute_iter:f}}</th>
+  <tr></tr>
+  {% endfor %}
+  </table>
+
+
   <section>
+
+
 
   <div class="card card-info card-inverse">
     <div class="card-block">

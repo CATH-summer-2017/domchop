@@ -3,10 +3,11 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel.min.css"  crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel.css"  crossorigin="anonymous">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel-compiled.min.js"  crossorigin="anonymous"></script> 
-
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel-compiled.min.js"  crossorigin="anonymous"></script>  #}
+<script src="https://rawgit.com/Flyer53/jsPanel3/master/source/jquery.jspanel-compiled.js
+"  crossorigin="anonymous"></script> 
 {# <script src="https://rawgit.com/biasmv/pv/master/bio-pv.min.js" crossorigin="anonymous"></script> #}
 <script src="http://biasmv.github.io/pv/js/pv.min.js" crossorigin="anonymous"></script>
 
@@ -22,3 +23,61 @@
 <!--   <link rel="stylesheet" href="/style.css">
   <script src="/merge_tree.js"></script>
  -->
+<script type="text/javascript">
+function addslashes(string) {
+    return string.replace(/\\/g, '\\\\').
+        replace(/\u0008/g, '\\b').
+        replace(/\t/g, '\\t').
+        replace(/\n/g, '\\n').
+        replace(/\f/g, '\\f').
+        replace(/\r/g, '\\r').
+        replace(/'/g, '\\\'').
+        replace(/"/g, '\\"');
+};
+</script>
+
+<style type="text/css">
+    
+.not_bold{
+    font-weight:normal
+}​
+
+</style>
+
+
+<script type="text/javascript">
+//   function highlight(j_alias){
+//   $(j_alias).addClass('bg-info').siblings().removeClass('bg-info');
+//   // $('body').
+//   // $(j_alias).get(0).scrollIntoView();
+//   // scrollTo(j_alias)
+//   // $(j_alias).get(0).click();
+// }
+// $( document ).ready(function() {
+
+//   $('.clickable-row').click(function() {
+//       // $(this).addClass('highlight').siblings().removeClass('highlight');
+//       // $(this).addClass('active').siblings().removeClass('active');
+
+//       // $(this).addClass('bg-info').siblings().removeClass('bg-info');
+//       highlight(this);
+//       // $(j_alias).addClass('bg-info').siblings().removeClass('bg-info');
+
+//       // $(this).find("#view3d").attr("href").eval();
+//       // $(this).find("#view3d").trigger()
+//       var elem = $(this).find("#view3d");
+//       elem = elem.get(0);
+//       elem.click();
+//       console.dir(elem);
+//       });
+
+// });
+// $(function () {
+//   $('[data-toggle="popover"]').popover()
+// })
+
+</script>
+
+
+{# Loading customised filer #}
+{% load util_filter %}

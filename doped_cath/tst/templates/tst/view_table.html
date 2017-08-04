@@ -5,32 +5,73 @@
 
 {# {% include "./viewPDB.template" %} #}
 {% include "./viewPDB.html" %}
+{% load util_filter %}
 
 {% load static %}
 <script type="text/javascript">
-  function highlight(j_alias){
-  $(j_alias).addClass('bg-info').siblings().removeClass('bg-info');
-  // $('body').
-  $(j_alias).get(0).scrollIntoView();
-  // scrollTo(j_alias)
-  // $(j_alias).get(0).click();
+// var adom = null;
+
+function highlight(row){
+    row.addClass('bg-info').siblings().removeClass('bg-info');
+    // row[0].scrollIntoView()
 }
+
+function scrollIntoViewIfNeeded($target) {
+    if ($target.position()) {
+        if ($target.position().top < jQuery(window).scrollTop()){
+            //scroll up
+            $('html,body').animate({scrollTop: $target.position().top});
+        }
+        else if ($target.position().top + $target.height() >
+            $(window).scrollTop() + (
+                window.innerHeight || document.documentElement.clientHeight
+            )) {
+            //scroll down
+            $('html,body').animate({scrollTop: $target.position().top -
+                (window.innerHeight || document.documentElement.clientHeight)
+                    + $target.height() + 15}
+            );
+        }
+    }
+}
+// function refresh_highlight(table){
+//   // if adom.node()=
+//   // if row.class()
+//   if (adom==row.id){
+//     row.addClass('bg-info')
+//   };
+// }
+
+// highlight_adom()
+
+
+
+
+function hevent(adom){
+ $(document).trigger("light",adom) 
+};
+
 $( document ).ready(function() {
-$('.clickable-row').click(function() {
-    // $(this).addClass('highlight').siblings().removeClass('highlight');
-    // $(this).addClass('active').siblings().removeClass('active');
 
-    // $(this).addClass('bg-info').siblings().removeClass('bg-info');
-    highlight(this);
+  $('.clickable-row').on("click",function() {
+      var adom=this.id
+      hevent(adom)
+      // this.find('#view3d')[0].click()
+      // $(document).trigger("light",adom)
+      // row=$("#"+adom)
+      // highlight(row);
+      $(this).find("#view3d")[0].click()
+      // console.log("you cliked", row);
+      });
 
-    // $(this).find("#view3d").attr("href").eval();
-    // $(this).find("#view3d").trigger()
-    var elem = $(this).find("#view3d");
-    elem = elem.get(0);
-    elem.click();
-    console.dir(elem);
-    });
+
 });
+
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
 </script>
 
  </head>
@@ -44,57 +85,109 @@ $('.clickable-row').click(function() {
 
 <div class="mt-1">
   <h3 class="display-3">
-   Doped_CATH
+   Doped_CATH   
+<button type="button" class="btn btn-info" data-toggle="popover" title="Doped_CATH" data-content="
+Doped_CATH is a data browser that highlights badly-chopped domains using both structure-based and hierarchy-based statistics
+">What is this?</button>
   </h3>
 </div>
 
+<div class="mt-1">
+  <p>
+  <h4 class="display-5">
+  Listing {{title}}
+  </h4>
+  ({{query_set|length}} entries on the page)
+  </p>
+</div>
+
+{% autoescape off %}
 <p class="lead">
-	This page is generated from a list of CATH domain ID's, usually suspicious of being badly packed (high nDOPE).
-  Each row represents a single domain from CATH.
-  There is no button you can click, but clicking on shiny bluish text will lead you to domain page or superfamily page.
+
+How to:<br/>
+{{page_caption}}
+<br/>
 </p>
 
-<p>
-<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#config" aria-expanded="true" aria-controls="config">
-  Config
-</button>
+{# <p>Enries are ordered by </p> #}
+
+{# Another pargarph #}
+<p class="table-heading">
+DEBUG: This page is: {{request.get_full_path}} 
 </p>
+
+
+
 
 </section>
 
 
-{% include "./config.html" %}
+
+<section>
+
+{% url 'figure_reverse' request.get_full_path as fig_url %}
+{% url 'figure_reverse' request.path as fig_url %}
+
+<p>
+<button class="btn btn-primary" type="button" id="view_plot" onclick="plot_window( '{{fig_url}}' + '\?scatter=raw');">
+ Raw Scatter Plot
+</button>
+<button class="btn btn-primary" type="button" id="view_plot" onclick="plot_window( '{{fig_url}}' + '\?scatter=pcnorm' );">
+ PC-Normalised Scatter Plot
+</button>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#config" aria-expanded="true" aria-controls="config">
+  Table Legend
+</button>
+
+{# {% autoescape off %} #}
+
+{% include "./table_legend.html" %}
+
+</p>
 
 
 
 {% if query_set|length %}
-{% url 'fig_nbscatter' query_set.0.superfamily as fig_url %}
-
-<p class="table-heading">
-URL:{{fig_url}}  Displaying {{query_set|length}} putative superfamily clusters for merging
-</p>
-  <button class="btn btn-primary" type="button" id="view_plot" onclick="plot_window();">
-   View Plot in panel
-  </button>
-
-	{{request}}
-    <table class="table table-sm">
+{# {% url 'fig_nbscatter' query_set.0.superfamily as fig_url %} #}
+    <table class="table table-sm table-bordered">
 		<thead>
 
-		{% for f in field_names %}
-			<th>{{f}}</th>
-		{% endfor %}
-
+        {% for f in field_names %}
+          <th>
+            {% with fshort=field_short|getattribute_none:f %}
+              {% if  fshort == "None" %}
+              {{f}}
+              {% else %}
+              {{fshort}}
+              {% endif %}
+            {% endwith %}
+          </th>
+        {% endfor %}      
 		</thead>
 		<tbody>
 			
-			{% load getattribute %}
 
-			{% autoescape off %}
+			{# {% autoescape off %} #}
+
+
 			{% for d in query_set %}
+
 				<tr id="dbid_{{d.id}}" class="clickable-row">
 					{% for f in field_names %}
-					<th>{{ d | getattribute:f }}</th>
+
+					<th> 
+          {% with col=d|getattribute_iter:f  %}
+  
+            {% if col|get_type  == 'float' or col|get_type  == 'long' %}
+                {{ col|floatformat:3}}
+            {% else %}
+                {{col}}                {# Oh no! #}
+            {% endif %}
+  
+          {% endwith %}
+          </th>
+
 					{% endfor %}
 				</tr>
 
@@ -111,7 +204,6 @@ URL:{{fig_url}}  Displaying {{query_set|length}} putative superfamily clusters f
 			    </tr>
 		
 			{% endfor %}
-			{% endautoescape  %}
 
 		</tbody>
 	</table>
@@ -119,16 +211,17 @@ URL:{{fig_url}}  Displaying {{query_set|length}} putative superfamily clusters f
     <p>No domain list is provided.</p>
 {% endif %}
 
-<iframe id="encoder_iframe" height="75%" width="50%" src="{%static 'mpld3_test.html'%}"/></iframe>
+{% endautoescape  %}
+
+{# <iframe id="encoder_iframe" height="75%" width="50%" src="{%static 'mpld3_test.html'%}"/></iframe> #}
 
 
 </div>
-
-
+</section>
 
 <script type="text/javascript">
-function plot_window(){
-
+function plot_window(fig_url){
+        // var iframe_tag = `<iframe id="encoder_iframe" height="100%" width="100%" src=`+fig_url+`/></iframe>`
         // "use strict";
         var mypanel=$.jsPanel({
             position: {
@@ -136,28 +229,92 @@ function plot_window(){
                 at: "right-top",
                 offsetY: 52
             },
+            contentSize:{width:"500px",height:"600px"},
+            dragit:{
+              contaminent:'parent',
+              disableui:true,
+              // disable:true,
+              // grid: [50, 50],
+              start: function(){
+                this.dragit('disable')
+              },
+              stop: function () {
+                this.dragit('disable')
+                // console.dir('dragging stopped!')
+              },              
+            },
+            resizeit:{
+              'disableui':true,
 
-            css:   {'width': '420', 'height':'600'},
-            // size: 'auto',
-
+            },
+            draggable:'disabled',
+            size: 'auto',
             headerTitle: "ScatterPlot",
-            // content: "<p>A plot containing information about outlier</p>"+`<iframe id="encoder_iframe" height="100%" width="100%" src="{%static 'mpld3_test.html'%}"/></iframe>`,
-            content:'<p>A plot containing information about outlier</p>',
-
+            // content:'',
+            contentIframe:{
+              src: fig_url
+            },
+            callback:function(){
+             console.dir(this.content.children("iframe")[0])
+            },
         });
-        mypanel.resize("500px","600px")
+            mypanel.on("mousedown",function(){
+              if(mypanel.option.dragit.disable==false){
+                mypanel.dragit()
+              }
+            });
+            // var id="#dbid_2483"
+            var id="#dbid_264136"
+            var id="#dbid_264136"
+
+            var iframe=mypanel.content.children("iframe")
+
+            // iframe.ready(function(){
+            //  console.dir( iframe.contents().find("body")[0]
+            //   )
+            // })
+
+            // iframe.on("load",function() {
+            //     // RunAfterIFrameLoaded(
+            //     console.dir("path is:")
+            //     var path=iframe.contents()
+            //     .find(id)[0];
+            //   console.dir( path
+            //     )
+            //   console.dir(this.contentWindow)
+            //   clicked=this.contentWindow.clicked
+
+            //   var dsel=d3.select(path)
+            //   // .each(clicked)
+
+            //   console.dir(dsel)
+            //   dsel.each(
+            //     clicked
+            //   )
+            //   // boundfunction=clicked.bind(path)
+            //   // console.log(path[0])
+
+            //   // boundfunction(d,i)
+            //   // clicked(d,i)
+            //   // path.mousedown()
+            //   // )
+
+            // });            
+
+
+        // mypanel.resize("500px","600px")
+
         // mypanel.css({'width':'500', 'height':'600'})
         // jsPanel.resizeContent(mypanel);
             // mypanel.content.append("<a href='#row1' onclick='$(`#row10`).click();' data-toggle='table'>row1</a>")
             // mypanel.size='auto';
             // mypanel.content.append(`<iframe id="encoder_iframe" height="100%" width="100%" src="{%static 'mpld3_test.html'%}"/></iframe>`)
-            mypanel.content.append(`<iframe id="encoder_iframe" height="100%" width="100%" src="{{fig_url}}"/></iframe>`)
-
-
+            
+            // mypanel.content.append(`<iframe id="encoder_iframe" height="100%" width="100%" src=`+fig_url+`/></iframe>`)
     };
 
 </script>
-
+{# {% endwith %} #}
 {# </iframe> #}
 
 
@@ -186,6 +343,28 @@ function plot_window(){
 //   // row was clicked
 //     });
 // });
+
+$(document).ready(function(){
+  $(document).on("light",{},
+    function(event,adom){
+    divid="#"+adom
+    console.log("you cliked", divid);
+    
+    var row = $(document).find(divid)
+    highlight(row)  
+
+    console.log('event target is',$(event))
+    scrollIntoViewIfNeeded(row)
+    // row[0].scrollIntoView(
+    //   {
+    //   behavior: "smooth", // or "auto" or "instant"
+    //   block: "start" // or "end"
+    //   }
+    // )
+  })
+
+})
+
 </script>
 
 

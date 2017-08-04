@@ -15,40 +15,95 @@ import requests
 from CATH_API.lib import *
 
 class homsf_manager(models.Manager):
-    def get_queryset(self):
-    	homsf_qset = super(homsf_manager, self).get_queryset().filter(level_id=5);
-    	homsf_qset = (homsf_qset.annotate(nDOPE_std=StdDev("classification__domain__nDOPE"))
-              .annotate(nDOPE_avg=Avg("classification__domain__nDOPE"))
-              .annotate(s35_count=Count("classification"))
-              .annotate(s35_len_avg=Avg("classification__domain__domain_length"))
-              # .annotate(superfamily="superfamily")
-              )
-        return homsf_qset
+	def get_queryset(self):
+		homsf_qset = super(homsf_manager, self).get_queryset().filter(level_id=5);
+		homsf_qset = (homsf_qset.annotate(nDOPE_std=StdDev("classification__domain__nDOPE"))
+			  .annotate(nDOPE_avg=Avg("classification__domain__nDOPE"))
+			  .annotate(s35_count=Count("classification"))
+			  .annotate(s35_len_avg=Avg("classification__domain__domain_length"))
+			  # .annotate(superfamily="superfamily")
+			  )
+		# for homsf_qset 
+		return homsf_qset
 
-    # def get_superfamily(self):
-    # 	homsf_qset.manager = "homsf_manager"
+class node_manager(models.Manager):
+
+	def get_bytree(self, node_str, qnode = None):
+		levels=[ None,
+		'root',
+		'Class',
+		'arch',
+		'topo',
+		'homsf',
+		's35',
+		's60',
+		's95',
+		's100'];
+
+		lst = [int(x) for x in node_str.split('.')]
+		if lst[-1]:
+			lst += [0]
+		# if lst[:2] == [0,0]:
+		ldep = len(lst)
+
+		lst = [0,0]+lst;
+
+		# idx = (x for x in lst)
+		if not qnode:
+			level = 2
+			obj = super(node_manager, self);
+			qset = obj.get_queryset()
+			qset = qset.filter(level__id = level)
+		else:
+			# qset = 
+			level = qnode.level.id + 1
+			qset = qnode.classification_set
+		while 1:
+			# qdict = {'level__id':level,
+					 # levels[level]: lst[level]}
+			try:
+				# qnode = qset.get(**qdict)
+				qnode = qset.get(**{ levels[level]: lst[level]})
+			except:
+				resp = 0;
+				# print('node %s not found'%(lst[1:level]))
+				break
+
+			if level == ldep:
+				resp = 1
+				break
+
+			qset = qnode.classification_set
+			level += 1
+
+		# domain_set = super(node_manager, self).get();
+		# domain_set.annotate(superfamily="")
+		return (qnode,resp)
+
+	# def get_superfamily(self):
+	# 	homsf_qset.manager = "homsf_manager"
 class domain_manager(models.Manager):
-    def get_queryset(self):
-    	domain_set = super(domain_manager, self).get_queryset();
-    	# domain_set.annotate(superfamily="")
-    	return domain_set
+	def get_queryset(self):
+		domain_set = super(domain_manager, self).get_queryset();
+		# domain_set.annotate(superfamily="")
+		return domain_set
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-    def __str__(self):
-        return self.question_text
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-    def to_values(self):
-    	return self
+	question_text = models.CharField(max_length=200)
+	pub_date = models.DateTimeField('date published')
+	def __str__(self):
+		return self.question_text
+	def was_published_recently(self):
+		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+	def to_values(self):
+		return self
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-    def __str__(self):
-        return self.choice_text
+	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	choice_text = models.CharField(max_length=200)
+	votes = models.IntegerField(default=0)
+	def __str__(self):
+		return self.choice_text
 
 class version(models.Model):
 	name = models.CharField(default=None,max_length=10);
@@ -116,11 +171,22 @@ class classification(models.Model):
 
 
 
-	objects = models.Manager()
+	# objects = models.Manager()
+	objects = node_manager()
 	homsf_objects = homsf_manager()
 		# pass
 
 	# 	return("Superfamily %s"%self.homsf_ID())
+
+class node_stat(models.Model):
+	node = models.OneToOneField(classification,
+		on_delete= models.CASCADE,
+		primary_key=True)
+	Rsq_NBcount_Acount = models.FloatField(null = True);
+	Rsq_NBcount_Rcount = models.FloatField(null = True);
+
+
+
 class domain(models.Model):
 	domain_id = models.CharField(max_length=7,db_index=True)
 	domain_length = models.IntegerField(default=0,null=True)
@@ -128,7 +194,12 @@ class domain(models.Model):
 	nDOPE = models.FloatField(default=0,null=True)
 	raw_DOPE = models.FloatField(default=0,null=True)
 	# version =  models.ForeignKey(version, default=None,on_delete= models.CASCADE);
-	classification =  models.ForeignKey(classification, on_delete= models.CASCADE);
+	# classification =  models.ForeignKey(classification, on_delete= models.CASCADE);
+	classification =  models.OneToOneField(classification, on_delete= models.CASCADE);
+
+	def __str__(self):
+		return self.domain_id
+
 	def superfamily(self):
 		return(self.classification.superfamily())
 	def superfamily_urled(self):
@@ -141,9 +212,47 @@ class domain(models.Model):
 		url = "http://www.cathdb.info/version/{:s}/domain/{:s}/".format(version, self.domain_id)
 		elem = '<a target="_blank" href="{:s}">{:s}</a>'.format(url, self.domain_id)
 		return elem
+	def residue_count(self):
+		try: 
+			c = self.domain_stat.res_count
+		except Exception as e:
+			c = None
+			# print(e)
+		return int(c)
+	def nbpair_count(self):
+		try: 
+			c = self.domain_stat.nbpair_count
+		except Exception as e:
+			c = None
+			# print(e)
+		return int(c)
+	def atom_count(self):
+		try: 
+			c = self.domain_stat.atom_count
+		except Exception as e:
+			c = None
+			# print(e)
+		return int(c)
+	
 	# class_id = models.IntegerField(default=0)
 	# node = models.CharField(default=None)
 	# homsf = models.ManyToManyField(homsf);
+
+class domain_stat(models.Model):
+	domain = models.OneToOneField(domain,
+		on_delete = models.CASCADE,
+		primary_key=True);
+	DOPE = models.FloatField(null = True)
+	nDOPE = models.FloatField(null = True)
+	nbpair_count = models.IntegerField(null = True)
+	atom_count = models.IntegerField(null = True)
+	res_count = models.IntegerField(null = True)
+	maha_dist = models.FloatField(null = True)
+	pcx = models.FloatField(null = True)
+	pcy = models.FloatField(null = True)
+
+
+
 
 class s35_rep(domain):
 	# classification = models.ForeignKey(classification, default=None,on_delete= models.CASCADE);

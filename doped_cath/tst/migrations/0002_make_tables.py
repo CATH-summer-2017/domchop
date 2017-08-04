@@ -97,8 +97,13 @@ class Migration(migrations.Migration):
                 ('nbpair_count', models.IntegerField(null=True)),
                 ('atom_count', models.IntegerField(null=True)),
                 ('res_count', models.IntegerField(null=True)),
+                ('maha_dist',models.FloatField(null=True)),
+                ('pcx',models.FloatField(null=True)),
+                ('pcy',models.FloatField(null=True)),
             ],
         ),
+
+
         migrations.CreateModel(
             name='node_stat',
             fields=[
