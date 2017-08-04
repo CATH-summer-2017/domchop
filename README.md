@@ -1,6 +1,8 @@
 # Domchop-util
  This repository includes the ongoing efforts in production of useful codes to facilitate the manual curation of domain chopping. Check our [wiki page](https://github.com/CATH-summer-2017/domchop/wiki) if you never heard of **DomChop**.
  
+(UPDATE: 2017-08-04) The doped_CATH will be migrating to a separate repo called [django_CATH](https://github.com/CATH-summer-2017/django_CATH), to allow for easier management and greater portability. 
+
 (UPDATED!!! 2017-07-14) If you are a Domchop curator. Please find the [`amazing_entries`](https://github.com/CATH-summer-2017/domchop/wiki/amazing_entries) page on `wiki` tab. Please also document interesting structures into `pdbs/` .
 
 
