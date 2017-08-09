@@ -20,3 +20,10 @@ fg 1
 kill it with "`Ctrl-C`"
 
 
+Install SMB-shared printer
+```
+sudo apt install python3-smbc
+sudo apt install smbclient
+testparm -v
+sudo touch /etc/samba/smb.conf 
+```
