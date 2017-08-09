@@ -1,0 +1,113 @@
+pdbID	status	reason
+		##This is where we keep a list of interesting domchops.Remember to keep the chain ID in pdbID 
+		##Higher entries are older, lower entries are newer. (only true for {w} entries) 
+		## Please use (Tab) button to separate fields, which essentially enters \t
+		## Each line MUST contain 3 fields separated by 2 \tab, even if all 3 fileds are blank
+		## Do not use quotes anywhere in the file cuz it breaks
+## For example		
+		5a01c \tab w \tab Bad CC results, to be discussed
+##Chopped cases		
+pdbID	status	reason
+4txaA	w 	manual assignment
+4w22K	a 	unpacked insertion in dom2
+4rcnB	w 	incorrect cathedral rendering?
+4rm6A	l 	Long repeated stacked beta sheets (non-globular).
+5af3B	a 	Strong dom-dom interaction and multimerisation
+5akpB	c	helical linker, dom-dom interaction rechopped,
+4ye9A	r	strange case, most methods diagree4
+5bmtB	r	CATHEDRAL and ChopClose failed on an easy case, while Puu and Domakdid good.
+		
+##Commented cases,		
+4qslH	r	Cathedral produced very coarse chopping. ChopClose inherited fine chopping from a close homologue. Too much controversial and require a better Cathedral to make a decision.
+4r04A	r,bp	Large beta-rich fragment at C-terminus require good templates for scanning method. Cathedral threw an spurious alignment for this region. *Dig literature, make refinement
+4ufqA	r	Monomer of 3-chain MCD. Stacking instead of globular packing.
+4rcnB	w	rasmol rendering problem
+2mxvA	r	NMR structure. Coordinated by the Zinc ion that is ignored by the algo. Well packed though.
+		
+		
+		
+##Miruna		 
+5a01C	r	CC result gives 5 domains. Ecod, however suggests, that the first 2 domains should be just one domain.
+4zemB 	r 	CC results are really good. However, the second domain is IDS.
+4zgvA 	r 	22-stranded transmembrane b-barrel that is difficult to chop
+4zdyA 	w 	According to Cathedral the structure should be divided into 2 domains. Ecod suggests it's a single domain structure. I think Domain 1 should be removed as it is too unpacked (COAF).
+5bu3A	w	Not sure about the helix that seems to be a connecting region between the barrels in the structure
+5a60A	w	Incomplete structure- many gaps -  not sure if I should chop it
+5by3A	w	Not sure if the 2 helices should be included in the yellow domain. Literature only gives residue detalis for second domain(158 to 459)
+5ch6B	w	No clue
+5chsA	w	Intereting structure. Literature doesn't help.
+5a8lQ	w	I am not sure if the alpha helix that spans Domains 1 and 2 should be split or just COAF.
+5ax7B	w	Results give 2 domains, I think it should be three. Literature not helping.
+5cqrA	w	Compelx structute. Not sure how to chop it. RSSAs scores are pretty low.
+5cqsD	c	This might be a single domain but I am not sure
+5cusB	w	Not sure if this should be chopped.
+5cslB	w	
+4zxdW	w	Not sure about the tongue in Domain 2.
+5ex1E	w	Not sure about literature result.
+5b1qB	c	Not sure if this is a WCD.
+5ex1E	c	This looks more like a WCD
+5hsjB	w	I don't agree with literature chopping
+
+		
+		
+##Feng		
+4ztcA	r 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
+5a22A	c 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
+4ug4D	r,bp 	Peripheral helixes *Check with nDOPE
+4zzhA	r	not sure about proposed domain 1, might be too small and unpacked
+4zphB	w	incorrect rendering, 2 hits to a single template
+4zsxA	bp	Artificial fusion linker produced a partial Cathedral match! Checking literature.
+2n53A	r	Better alternative PDB structure available.
+5c9iA	r	Two manual proposal. Refer to 1C9P.
+5ccbB	r	should we COAF insertion? should we include separate fragment?
+5c76C	l	check the MCD helixes
+5dgkB	c	
+5awhA	c	
+2n73B	w	need to correct my python script.
+		
+4qvgC	r	CC result show extension at C-terminal. Not sure whether to COAF.
+4ze0A 	r  	Based on Cathedral Domain 1 (transmembrane region) was removed. Changed the boundaries of Domain 2 (COAF)
+4ui9X	c 	Super-helix structure that is difficult to chop into domains. ECOD considers it to be single domain
+5e4vA	c	open conformation. decision pending for C-terminal helix  
+		
+##Ilya		
+4zl4B	r	Algorithms are panicking, not agreeing with prodata either (visit the paper)
+5bq9B	r	missing a big chunk of structure, however the domains are easy to see (just chop it)
+5byhM	r	really unpacked protein, part of a big multichain complex, strange stuff (cut red in half, add blue helices to green)
+5c6tA	r	not sure if I should include the linkers (remove the linkers)
+5a63A	r	complicated case, hard to separate the domains, single helix is part of other MCD (separate 2 domains at 252, helix cut off)
+5c6gA	r	part of a big MCD (its fine, chop according to Detective with refining boundaries)
+5cvnA	c	not sure if proposed domain 1 needs to be chopped into smaller domains (no good match in CATH for domain 1)
+5cwwB	r	looks like a WCD but maybe some parts need to be chopped off because they might be parts of MCD (it is a WCD)
+5cwsK	r	this definetly doesnt belong in CATH but very nice to look at (chop off a sheet-helix-sheet as 1 domain)
+3jb6A	c	found a chopping proposed in the article, seems plausible but I am not 100% sure.   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5086257/
+5d06A	c	complicated case, chopping based on paper is a bit strange, more info in the comment, unstructured extension of domain 2 binds the cofactor   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4837477/
+3jb9_	r	huge multi-chain spliceosome with 37 (!) chains, _ stands for X, Y, W, V, A, a, c for now, maybe more. very complex. (just chop it man)
+5axwA	r	chopping is based purely on my common sense, because algorithms didnt provide good choppings and article is not available. more info in the comment. (find the article)
+5dcaA	r	very big chain, results from CATHEDRAL and CC are not bad, however they contradict the article. at the same time domains from the article are too big and unpacked. more info in comments https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4699386/
+5d98A	r	no good chopping by algorithms, some structures may be parts of bigger MCD, chopping based on common sense
+5aorA	r	based on paper, big chunks of structure missing, proposed domain added to 2 other domains due to being unpacked. not sure about tongues on domains 3 and 1. https://www.ncbi.nlm.nih.gov/pubmed/?term=26545078
+5dqrA	r	very tempting to treat it as a WCD (it is a WCD)
+5du3A	r	again, very tempting to treat as a WCD but for some reason, it has really high SSAP scores with some bad choppings
+5dvyA	r	domain boundary on the secondary structure, not sure (domains 2 and extend to to the yellow, end of 2 beta strands)
+5dseA	r	superhelix, probably needs to be considered as a WCD
+5edvA	r	according to the paper linker region is a domain, however it is part of the complex  and quite unpacked.
+3jb9X	r	chopping is based on common sense, maybe the remainder of barell needs to be a domain
+3jb9A	r	part of the spliceosme, hard to find where domain 2 can be chopped
+5es2A	r	unknown function, chopped up for parallel helices loosely based on Puu
+5f0nA	c	many alpha helices, not sure about the chopping in general (WCD, based on ECOD and other cases (5f0o)
+5b16A	w	a lot of structure missing, needs a lot of trimming
+5hdtA	w	superhelix again, why...
+3jc6A	w	not sure if MCD, otherwise probably WCD
+5hm5A	w	guess what? superhelix... Not sure whenether domain 3 needs to be split in half, ECOD is useless
+		
+		
+#Symbols:		
+	w	waiting for action
+	d	discussed, changes not applied
+	r	resolved
+	c	consulting Christine
+	bp	potential blog post
+		
+### Notes:		
+		Check the papers for hard cases.
