@@ -1,0 +1,6 @@
+mpld3==0.3
+requests==2.12.4
+Django==1.11.3
+numpy==1.11.0
+matplotlib==2.0.0
+scikit_learn==0.19b2

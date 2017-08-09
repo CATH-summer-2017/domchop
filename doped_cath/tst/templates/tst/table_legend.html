@@ -1,0 +1,63 @@
+<div class="collapse" id="config" aria-expanded="true">
+
+
+<div class="mt-1">
+  <h4 class="display-5">
+  Table Legend Table
+  </h4>
+</div>
+
+  <table class="table table-bordered">
+{% load util_filter %}
+
+
+
+
+<!-- 
+Print the Legend table
+-->
+
+  <tr>
+    <th>Table Key</th>
+    <th colspan="3">
+    Readable
+    </th>
+  </tr>
+
+  {% for f in field_names %}
+  <tr>
+    <th>
+
+      {% with fshort=field_short|getattribute_none:f %}
+
+        {% if  fshort == "None" %}
+        {{f}}
+        {% else %}
+        {{fshort}}
+        {% endif %}
+
+      {% endwith %}
+
+
+    </th>
+    <th colspan="3">
+      <span class="not_bold">
+      {{field_readable|getattribute_none:f}}
+      </span>
+    </th>
+  </tr>
+  {% endfor %}
+
+
+
+  </table>
+
+
+  <section>
+
+
+
+
+  </section>
+
+</div>

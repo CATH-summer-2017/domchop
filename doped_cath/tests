@@ -1,0 +1,18 @@
+1. Data loading:
+	Use INSERT in MySQL to load the hierarchy 
+		a. load the whole s35 collection.
+		b. add the requested domains only (cache)
+			Test: How should the source file be formatted?
+
+	Load the nDOPE score in some manner: pickle the score in some manner.
+		a. On-request: Specify a collection of s35 that needs nDOPE score.
+		b. Before filtering: all DOPEs need to be computed before we can filter on nDOPE.
+			Test: i. check the integrity of DOPE score column: is there any blank or failed case?
+				  Flag them up for further action.
+				  ii. Test whether the module works on a specific collection of PDB (done!)
+				  iii. Test whether retrival module works?
+	Now we got all data already.
+
+
+Other tests:
+	Server test
