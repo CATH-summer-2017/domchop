@@ -46,14 +46,11 @@ pdbID	status	reason
 5ex1E	w	Not sure about literature result.
 5b1qB	c	Not sure if this is a WCD.
 5ex1E	c	This looks more like a WCD
-5hsjB	r	I don't agree with literature chopping
-3jcmH	c	
+5hsjB	w	I don't agree with literature chopping
 
 		
 		
 ##Feng		
-5dotA	w	Consult template literature for beta-structure
-
 4ztcA	r 	Cathedral proposes an N-terminal structural tail is part of domian2, though topologically discontinuous
 5a22A	c 	Cryo_EM, no sensible auto-result, *please add ECOD chopping.
 4ug4D	r,bp 	Peripheral helixes *Check with nDOPE
@@ -100,10 +97,10 @@ pdbID	status	reason
 5es2A	r	unknown function, chopped up for parallel helices loosely based on Puu
 5f0nA	c	many alpha helices, not sure about the chopping in general (WCD, based on ECOD and other cases (5f0o)
 5b16A	w	a lot of structure missing, needs a lot of trimming
-5hdtA	w	superhelix again, why...
-3jc6A	w	not sure if MCD, otherwise probably WCD
-5hm5A	w	guess what? superhelix... Not sure whenether domain 3 needs to be split in half, ECOD is useless
-5hpnC	w	quick one, is it an MCD?
+5hdtA	d	superhelix again, why... (WCD)
+3jc6A	d	not sure if MCD, otherwise probably WCD (use CATHEDRAL, 2 domains, label as MCD)
+5hm5A	c	guess what? superhelix... Not sure whenether domain 3 needs to be split in half, ECOD is useless (domain 1 is topoisomerase, possibly merge domains 2 and 3, chopped as 10 doms in paper and ECOD)
+5hpnC	d	quick one, is it an MCD? (WCD, MCD, De Novo)
 		
 		
 #Symbols:		
