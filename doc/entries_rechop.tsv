@@ -6,7 +6,8 @@ na	9nseA	NA	this is a bad chopping, lots of fragments and secondary structure ch
 NA	4e8dA	NA	doped_cath outlier
 NA	3gw6D	NA	doped_cath outlier
 5fmoL	1ny72	NA	doped_cath outlier, inherited from CathDomall, 2 consecutive domains incorrectly merged
-5f22B			Really good chopclose SSAP score but the chopping is not good.
-5fgzA			Good SSAP score for both Chopclose and Cathedral but chopping is weird.    
-2naoD	2m9sA		protein fibril monomer
-5hsaB      Bad chopping results despite good SSAP scores
+5f22B	NA	NA	Really good chopclose SSAP score but the chopping is not good.
+5fgzA	NA	NA	Good SSAP score for both Chopclose and Cathedral but chopping is weird.    
+2naoD	2m9sA	NA	protein fibril monomer
+5hsaB	NA	NA	Bad chopping results despite good SSAP scores
+1dotA	1bxrC	NA	more detailed proposed for 1dotA. Trigger backwards update. 	
