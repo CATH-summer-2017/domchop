@@ -27,3 +27,10 @@ sudo apt install smbclient
 testparm -v
 sudo touch /etc/samba/smb.conf 
 ```
+
+ssh-tunnelling
+9000 is local port
+8889 is remote port
+```sh
+ssh -i$sshkey -N -f -L localhost:9000:localhost:8889 shouldsee@10.0.0.2
+```
