@@ -34,3 +34,9 @@ ssh-tunnelling
 ```sh
 ssh -i$sshkey -N -f -L localhost:9000:localhost:8889 shouldsee@10.0.0.2
 ```
+
+
+hardware fault
+```
+dmesg
+```
