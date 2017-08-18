@@ -34,3 +34,25 @@ ssh-tunnelling
 ```sh
 ssh -i$sshkey -N -f -L localhost:9000:localhost:8889 shouldsee@10.0.0.2
 ```
+
+rsync with sshkey
+```
+rsync -av --progress --rsh="ssh -i${sshkey}" $hpz600:/home/shouldsee/Documents/repos/cathdb/test_envs/django_CATH/rootsite/data/ $repos/test_envs/django_CATH/rootsite/data 
+```
+
+hmmsearch
+```
+hmmsearch --cpu 7 --noali -o $SEQlib/hmm/last.log --domtblout $SEQlib/hmm/CATHS100.domtbl $SEQlib/cath-S35-hmm3.lib $SEQlib/cath-domain-seqs-S100.fa
+```
+
+useful functions
+```
+function cath_PDB(){ wget "http://www.cathdb.info/version/current/api/rest/id/$@.pdb" ;  } 
+export cath_PDB
+#cath_PDB 1cukA01
+```
+
+function quick_superpose(){
+cath-ssap $1 $2;
+cath-superpose --ssap-aln-infile $1$2.list --pdb-infile $1 --pdb-infile $2 --sup-to-pymol;
+}
