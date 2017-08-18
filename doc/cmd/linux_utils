@@ -56,3 +56,9 @@ function quick_superpose(){
 cath-ssap $1 $2;
 cath-superpose --ssap-aln-infile $1$2.list --pdb-infile $1 --pdb-infile $2 --sup-to-pymol;
 }
+
+
+hardware fault
+```
+dmesg
+```
