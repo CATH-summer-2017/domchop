@@ -37,6 +37,11 @@ ssh -i$sshkey -N -f -L localhost:9000:localhost:8889 shouldsee@10.0.0.2
 
 rsync with sshkey
 ```
+folderA=$hpz600:/home/shouldsee/Documents/repos/cathdb/test_envs/django_CATH/rootsite/data/
+folderB=$repos/test_envs/django_CATH/rootsite/data 
+
+rsync -av --progress --rsh="ssh -i${sshkey}" $folderA $folderB
+
 rsync -av --progress --rsh="ssh -i${sshkey}" $hpz600:/home/shouldsee/Documents/repos/cathdb/test_envs/django_CATH/rootsite/data/ $repos/test_envs/django_CATH/rootsite/data 
 ```
 
